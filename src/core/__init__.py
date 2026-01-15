@@ -1,0 +1,1 @@
+# COIN:OPERATED JRPG - Core Module
