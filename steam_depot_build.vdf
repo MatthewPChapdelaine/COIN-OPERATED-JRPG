@@ -1,0 +1,18 @@
+"DepotBuildConfig"
+{
+  "DepotID" "YOUR_DEPOT_ID_HERE"
+  "ContentRoot" "./"
+  "FileMapping"
+  {
+    "LocalPath" "*"
+    "DepotPath" "."
+    "recursive" "1"
+  }
+  "FileExclusion" "*.psd"
+  "FileExclusion" "*.git*"
+  "FileExclusion" "*__pycache__*"
+  "FileExclusion" "*.pyc"
+  "FileExclusion" "save_*.json"
+  "FileExclusion" "steam_build"
+  "FileExclusion" "node_modules"
+}

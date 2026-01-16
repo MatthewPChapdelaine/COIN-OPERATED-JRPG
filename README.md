@@ -3,30 +3,67 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Game Status: Playable](https://img.shields.io/badge/status-playable-green.svg)]()
+[![Graphics: SNES-Style](https://img.shields.io/badge/graphics-SNES--style-ff69b4.svg)]()
+[![Platform: Linux](https://img.shields.io/badge/platform-Linux-lightgrey.svg)]()
+[![Steam: Ready](https://img.shields.io/badge/Steam-ready-blue.svg)]()
 
-**A narrative-driven JRPG set in the Orbspace universe**
+**An authentic SNES-style JRPG set in the Orbspace universe**
 
-Follow Coin's journey from sentient magical artifact to Time Goddess in this turn-based RPG featuring deep storytelling, strategic combat, and meaningful player choices across multiple story acts and endings.
+Follow Coin's journey from sentient magical artifact to Time Goddess in this turn-based RPG featuring deep storytelling, strategic combat, and meaningful player choices. Features **authentic 16-bit graphics** generated procedurally to recreate the golden age of SNES JRPGs.
 
 ---
 
 ## 🎮 Quick Start
 
-### Play the Game
+### Linux Users (Recommended)
 
 ```bash
 # Clone the repository
 git clone https://github.com/MatthewPChapdelaine/COIN-OPERATED-JRPG.git
 cd COIN-OPERATED-JRPG
 
+# Run automated setup (installs dependencies)
+chmod +x setup_linux.sh
+./setup_linux.sh
+
+# Verify installation
+./verify.sh
+
 # Run the game
 python3 play.py
 ```
 
-### Run Tests
+### Manual Setup (All Platforms)
 
 ```bash
-python3 src/tests/test_game.py
+# Install dependencies
+pip3 install -r requirements.txt
+
+# Run the game
+python3 play.py
+```
+
+### Test Procedural Graphics
+
+```bash
+# Generate SNES-style graphics samples ⭐
+python3 snes_demo.py
+
+# Generate game icons
+python3 generate_icon.py
+
+# Test graphics system
+python3 test_graphics.py
+```
+
+### Build for Steam
+
+```bash
+# Build Steam-ready package
+chmod +x build_steam.sh
+./build_steam.sh
+
+# Output will be in steam_build/
 ```
 
 ---
@@ -69,6 +106,43 @@ You are **Coin**, a sentient being created from Domminnian Coins and pure magica
 - **Enemy Variety:** 10+ enemy types plus bosses and optional superbosses
 - **Equipment System:** Common → Rare → Epic → Legendary gear
 - **Ability Trees:** Unlock powerful magic and combat abilities
+
+### 🎨 Graphics Systems
+
+#### SNES-Style System ⭐ NEW!
+- **Authentic 16-bit**: True SNES resolution (256×224) and color depth (15-bit RGB)
+- **Pixel-Perfect Sprites**: 16×16 character sprites in classic JRPG style
+- **Tile-Based Maps**: Overworld and dungeon exploration with scrolling camera
+- **Side-View Battles**: Classic FF4-6 style battle screens
+- **Classic UI**: Dark blue windows, yellow cursor, color-coded HP bars
+- **Complete Scenes**: Title screen, menus, dialogue boxes, status windows
+
+**Benefits:**
+- Authentic golden-age JRPG aesthetic
+- Optimized for retro feel
+- Instant nostalgia for SNES RPG fans
+- Inspired by FF6, Chrono Trigger, Secret of Mana
+
+See [docs/SNES_GRAPHICS.md](docs/SNES_GRAPHICS.md) for complete documentation.
+
+#### Modern Procedural System
+- **100% Code-Generated:** All graphics created procedurally - no external image files required
+- **Character Sprites:** Unique pixel art for all 6+ playable characters (32×32)
+- **Enemy Sprites:** Procedurally generated enemy designs
+- **Animations:** Walk cycles, attacks, spell casting, and more
+- **Visual Effects:** Magic spells, combat effects, particle systems
+- **UI Elements:** Buttons, windows, health bars, icons, menus
+- **Environment:** Tiles, backgrounds, props, walls - all generated at runtime
+- **Dynamic Theming:** Change visual style and colors programmatically
+
+**Benefits:**
+- No binary assets in version control
+- Tiny file size (graphics system is pure Python code)
+- Easy color customization and theming
+- Infinite variations possible
+- Accessibility-friendly (adjustable for different vision needs)
+
+See [docs/GRAPHICS_SYSTEM.md](docs/GRAPHICS_SYSTEM.md) for modern system documentation.
 
 ### 💾 Save System
 - **10 Save Slots:** Multiple playthroughs supported
@@ -181,28 +255,72 @@ Your ending is determined by:
 ## 🛠️ Technical Details
 
 ### Requirements
-- Python 3.8 or higher
-- No external dependencies (uses standard library only)
-- ~50MB disk space
+- **Python:** 3.8 or higher
+- **PIL/Pillow:** 9.0.0+ (for procedural graphics generation)
+- **Disk Space:** ~100MB (includes generated assets)
+- **OS:** Linux (primary), macOS, Windows
+
+### Installation
+
+#### Linux (Recommended)
+```bash
+# Clone repository
+git clone https://github.com/MatthewPChapdelaine/COIN-OPERATED-JRPG.git
+cd COIN-OPERATED-JRPG
+
+# Automated setup
+./setup_linux.sh
+
+# Verify installation
+./verify.sh
+
+# Play!
+python3 play.py
+```
+
+#### Other Platforms
+```bash
+# Install dependencies
+pip3 install -r requirements.txt
+
+# Run game
+python3 play.py
+```
+
+### Steam Deployment
+
+Ready for Steam! See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for full instructions.
+
+```bash
+# Build for Steam
+./build_steam.sh
+
+# Upload using SteamCMD
+steamcmd +login YOUR_USERNAME +run_app_build steam_app_build.vdf +quit
+```
 
 ### Supported Platforms
-- Linux
-- macOS
-- Windows
-- Any system with Python 3.8+
+- ✅ **Linux** (Ubuntu 18.04+, Fedora 30+, etc.)
+- ✅ **macOS** (10.14+)
+- ✅ **Windows** (10+)
+- ✅ **Steam** (Ready for distribution)
 
 ### Performance
 - Text-based interface for maximum compatibility
-- Minimal system requirements
+- Minimal system requirements (512MB RAM)
 - Save files are compact JSON format
+- Graphics generated on-demand and cached
 
 ---
 
 ## 📚 Documentation
 
+- **[Deployment Guide](docs/DEPLOYMENT.md)** ⭐ NEW! - Linux setup and Steam publishing
+- **[SNES Graphics System](docs/SNES_GRAPHICS.md)** - Authentic 16-bit JRPG visuals
+- **[Modern Graphics System](docs/GRAPHICS_SYSTEM.md)** - Complete procedural graphics documentation
 - **[Development Guide](docs/DEVELOPMENT.md)** - For developers and modders
 - **[Game Design Document](COIN_OPERATED%20JRPG.md)** - Complete design specification
-- **[API Documentation](#)** - Code documentation (in progress)
+
 
 ---
 

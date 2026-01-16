@@ -1,0 +1,30 @@
+"appbuild"
+{
+  "appid" "YOUR_STEAM_APP_ID_HERE"
+  "desc" "Coin-Operated JRPG Build"
+  "buildoutput" "./steam_build"
+  "contentroot" "./"
+  "setlive" ""
+  "preview" "0"
+  "local" ""
+  
+  "depots"
+  {
+    "YOUR_DEPOT_ID_HERE"
+    {
+      "FileMapping"
+      {
+        "LocalPath" "*"
+        "DepotPath" "."
+        "recursive" "1"
+      }
+      "FileExclusion" "*.psd"
+      "FileExclusion" "*.git*"
+      "FileExclusion" "*__pycache__*"
+      "FileExclusion" "*.pyc"
+      "FileExclusion" "save_*.json"
+      "FileExclusion" "steam_build"
+      "FileExclusion" "node_modules"
+    }
+  }
+}
