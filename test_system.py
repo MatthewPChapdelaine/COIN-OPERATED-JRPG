@@ -84,10 +84,10 @@ def test_graphics_system():
             found += 1
     
     if found == len(graphics_files):
-        print(f"✓ SNES graphics system complete ({found}/{len(graphics_files)} files)")
+        print(f"✓ Retro16 graphics system complete ({found}/{len(graphics_files)} files)")
         return True
     elif found > 0:
-        print(f"⚠ Partial SNES graphics system ({found}/{len(graphics_files)} files)")
+        print(f"⚠ Partial Retro16 graphics system ({found}/{len(graphics_files)} files)")
         return True
     else:
         print("⚠ No graphics system found (optional)")

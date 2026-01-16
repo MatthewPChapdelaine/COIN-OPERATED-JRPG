@@ -108,11 +108,11 @@ class MockEnemy:
         self.level = 8
 
 
-def run_graphics_demo(mode='snes'):
+def run_graphics_demo(mode='retro16'):
     """Run graphics demonstration.
     
     Args:
-        mode: 'graphics' or 'snes'
+        mode: 'graphics' or 'retro16'
     """
     print("🎮 COIN-OPERATED JRPG - Graphics Demo")
     print("=" * 60)
@@ -136,10 +136,10 @@ def run_graphics_demo(mode='snes'):
     adapter = GraphicsAdapter(engine)
     
     # Create appropriate renderer
-    if mode == 'snes':
-        print("\n📺 Initializing SNES renderer...")
-        from graphics.snes_pygame_renderer import SNESPygameRenderer
-        renderer = SNESPygameRenderer(adapter, scale=3)
+    if mode == 'retro16':
+        print("\n📺 Initializing Retro16 renderer...")
+        from graphics.snes_pygame_renderer import Retro16PygameRenderer
+        renderer = Retro16PygameRenderer(adapter, scale=3)
     else:
         print("\n🖼️ Initializing graphics renderer...")
         from graphics.pygame_renderer import PygameRenderer
@@ -185,9 +185,9 @@ def main():
     )
     parser.add_argument(
         '--mode', '-m',
-        choices=['graphics', 'snes'],
-        default='snes',
-        help='Graphics mode to demo (default: snes)'
+        choices=['graphics', 'retro16'],
+        default='retro16',
+        help='Graphics mode to demo (default: retro16)'
     )
     
     args = parser.parse_args()
@@ -200,8 +200,8 @@ def main():
         print("\nInstall with: pip install pygame")
         sys.exit(1)
     
-    # Check for PIL if SNES mode
-    if args.mode == 'snes':
+    # Check for PIL if Retro16 mode
+    if args.mode == 'retro16':
         try:
             import PIL
         except ImportError:

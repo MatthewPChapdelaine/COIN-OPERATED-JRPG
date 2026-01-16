@@ -29,9 +29,9 @@ Successfully implemented a **complete, production-ready graphics system** for CO
    - HP/MP bars, messages, menus
    - 380 lines of code
 
-4. **SNES Pygame Renderer** ([python-core/graphics/snes_pygame_renderer.py](python-core/graphics/snes_pygame_renderer.py))
-   - 256x224 SNES resolution (scaled 3x)
-   - Integrates existing SNES graphics
+4. **Retro16 Pygame Renderer** ([python-core/graphics/snes_pygame_renderer.py](python-core/graphics/snes_pygame_renderer.py))
+   - 256x224 Retro16 resolution (scaled 3x)
+   - Integrates existing Retro16 graphics
    - Authentic 16-bit aesthetics
    - Uses PIL + pygame
    - 290 lines of code
@@ -86,12 +86,12 @@ python3 launch_game.py --mode graphics
 - **Style:** Clean, contemporary
 - **Best for:** General gameplay
 
-### Mode 3: SNES Mode (Retro) ⭐
+### Mode 3: Retro16 Mode (Retro) ⭐
 ```bash
-python3 launch_game.py --mode snes
+python3 launch_game.py --mode retro16
 ```
 - **Resolution:** 256x224 (scaled 3x = 768x672)
-- **Graphics:** Authentic 16-bit SNES
+- **Graphics:** Authentic 16-bit retro
 - **Dependencies:** pygame + Pillow
 - **Style:** Retro JRPG aesthetics
 - **Best for:** Nostalgic experience
@@ -105,7 +105,7 @@ python3 launch_game.py --mode snes
 ┌─────────────────────────────────────────────┐
 │         Text Mode (Terminal)                 │
 │         Graphics Mode (Pygame)               │
-│         SNES Mode (Pygame + PIL)             │
+│         Retro16 Mode (Pygame + PIL)          │
 └─────────────────┬───────────────────────────┘
                   │ Uses only interfaces
                   ↓
@@ -148,7 +148,7 @@ python3 launch_game.py --mode snes
 ✅ **Save File Compatibility**
 - Same save format for all modes
 - Save in text, load in graphics
-- Save in SNES, load in text
+- Save in Retro16, load in text
 - Complete cross-mode compatibility
 
 ✅ **Event-Driven Updates**
@@ -167,7 +167,7 @@ python3 launch_game.py --mode snes
 | **Interfaces** | 1 | 145 | API contracts |
 | **Adapter** | 1 | 285 | Bridge layer |
 | **Pygame Renderer** | 1 | 380 | Modern graphics |
-| **SNES Pygame Renderer** | 1 | 290 | Retro graphics |
+| **Retro16 Pygame Renderer** | 1 | 290 | Retro graphics |
 | **Unified Launcher** | 1 | 165 | Entry point |
 | **Play Scripts** | 2 | 130 | Legacy launchers |
 | **Automation Manager** | 1 | 645 | Pipeline automation |
@@ -215,7 +215,7 @@ $ python3 automation/validate_feature_parity.py
 
 ### Simple Launch
 ```bash
-# Just works - SNES mode by default
+# Just works - Retro16 mode by default
 python3 launch_game.py
 
 # See all options
@@ -236,7 +236,7 @@ ESC            Quit
 ```
 
 ### Mode Selection
-- **Default:** SNES mode (best experience)
+- **Default:** Retro16 mode (best experience)
 - **Alternative:** Graphics mode (simpler)
 - **Fallback:** Text mode (no dependencies)
 
@@ -251,7 +251,7 @@ ESC            Quit
 ### For Developers
 3. **[GRAPHICS_INTEGRATION.md](docs/GRAPHICS_INTEGRATION.md)** - Architecture guide
 4. **[DEVELOPMENT.md](docs/DEVELOPMENT.md)** - Development workflow
-5. **[SNES_GRAPHICS.md](docs/SNES_GRAPHICS.md)** - SNES graphics system
+5. **[SNES_GRAPHICS.md](docs/SNES_GRAPHICS.md)** - Retro16 graphics system
 
 ### For Automation
 6. **[AUTOMATION_COMPLETE.md](AUTOMATION_COMPLETE.md)** - Setup summary
@@ -294,7 +294,7 @@ ESC            Quit
 
 ### For Players
 ✨ **Three distinct experiences** from one game
-✨ **Authentic SNES nostalgia** with modern interface
+✨ **Authentic 16-bit nostalgia** with modern interface
 ✨ **Flexible gameplay** - choose your style
 ✨ **Save anywhere, play anywhere** - full compatibility
 
@@ -416,7 +416,7 @@ Documentation:
 ✅ **Full Functionality** - All features working
 ✅ **Automated Quality** - CI/CD prevents violations
 ✅ **Comprehensive Docs** - Clear guides for all users
-✅ **Multi-Mode Support** - Text, Graphics, SNES
+✅ **Multi-Mode Support** - Text, Graphics, Retro16
 ✅ **Production Ready** - Fully tested and validated
 ✅ **Future Proof** - Easy to extend and enhance
 
@@ -426,7 +426,7 @@ Documentation:
 
 ### Run the Game
 ```bash
-python3 launch_game.py                 # SNES mode (default)
+python3 launch_game.py                 # Retro16 mode (default)
 python3 launch_game.py --mode graphics # Modern graphics
 python3 launch_game.py --mode text     # Text mode
 python3 launch_game.py --list-modes    # Show all modes
@@ -455,7 +455,7 @@ The COIN-OPERATED JRPG now features a **world-class graphics system** that:
 2. ✅ Maintains **zero data duplication**
 3. ✅ Uses **clean interface-based architecture**
 4. ✅ Includes **automated validation**
-5. ✅ Delivers **authentic SNES aesthetics**
+5. ✅ Delivers **authentic 16-bit aesthetics**
 6. ✅ Ensures **cross-mode save compatibility**
 7. ✅ Offers **comprehensive documentation**
 8. ✅ Passes **all quality checks**

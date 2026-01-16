@@ -131,7 +131,7 @@ class TestConfiguration(unittest.TestCase):
         mode = config.get('graphics.mode')
         
         self.assertIsNotNone(mode)
-        self.assertIn(mode, ['text', 'graphics', 'snes'])
+        self.assertIn(mode, ['text', 'graphics', 'retro16'])
     
     def test_set_config_value(self):
         """Test setting config value."""
@@ -193,7 +193,7 @@ class TestUtils(unittest.TestCase):
         
         self.assertTrue(validate_mode('text'))
         self.assertTrue(validate_mode('graphics'))
-        self.assertTrue(validate_mode('snes'))
+        self.assertTrue(validate_mode('retro16'))
         self.assertFalse(validate_mode('invalid'))
     
     def test_format_time(self):
@@ -293,8 +293,8 @@ class TestFileStructure(unittest.TestCase):
         renderer_path = Path(__file__).parent / 'python-core' / 'graphics' / 'pygame_renderer.py'
         self.assertTrue(renderer_path.exists())
     
-    def test_snes_renderer_exists(self):
-        """Test snes_pygame_renderer.py exists."""
+    def test_retro16_renderer_exists(self):
+        """Test snes_pygame_renderer.py exists (Retro16 renderer)."""
         renderer_path = Path(__file__).parent / 'python-core' / 'graphics' / 'snes_pygame_renderer.py'
         self.assertTrue(renderer_path.exists())
     

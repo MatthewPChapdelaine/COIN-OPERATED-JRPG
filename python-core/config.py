@@ -159,7 +159,7 @@ class ConfigManager:
     
     def get_graphics_mode(self) -> str:
         """Get current graphics mode."""
-        return self.get('graphics.mode', 'snes')
+        return self.get('graphics.mode', 'retro16')
     
     def set_graphics_mode(self, mode: str):
         """Set graphics mode.

@@ -150,12 +150,12 @@ def profile_pygame_renderer(profiler: PerformanceProfiler, frames: int = 100):
 
 
 def profile_snes_renderer(profiler: PerformanceProfiler, frames: int = 100):
-    """Profile SNES renderer."""
-    print("\nProfiling SNES Renderer...")
+    """Profile Retro16 renderer."""
+    print("\nProfiling Retro16 Renderer...")
     
     try:
         import pygame
-        from graphics.snes_pygame_renderer import SNESPygameRenderer
+        from graphics.snes_pygame_renderer import Retro16PygameRenderer
         from graphics.adapter import GraphicsAdapter
         from unittest.mock import Mock
         
@@ -178,30 +178,21 @@ def profile_snes_renderer(profiler: PerformanceProfiler, frames: int = 100):
         
         # Initialize pygame
         pygame.init()
-        renderer = SNESPygameRenderer(adapter, scale_factor=2)
+        renderer = Retro16PygameRenderer(adapter, scale=2)
         
         # Profile rendering
         for i in range(frames):
-            profiler.start('snes_render_frame')
+            profiler.start('retro16_render_frame')
             
-            profiler.start('snes_clear')
-            renderer.screen.fill((0, 0, 0))
-            profiler.stop('snes_clear')
+            profiler.start('retro16_render')
+            renderer._render()
+            profiler.stop('retro16_render')
             
-            profiler.start('snes_draw_text')
-            location = adapter.get_player_location()
-            renderer._draw_snes_text(
-                location.get('name', 'Unknown'),
-                (128, 20),
-                (255, 255, 255)
-            )
-            profiler.stop('snes_draw_text')
-            
-            profiler.start('snes_display_update')
+            profiler.start('retro16_display_update')
             pygame.display.flip()
-            profiler.stop('snes_display_update')
+            profiler.stop('retro16_display_update')
             
-            profiler.stop('snes_render_frame')
+            profiler.stop('retro16_render_frame')
             
             # Process events
             for event in pygame.event.get():
@@ -214,7 +205,7 @@ def profile_snes_renderer(profiler: PerformanceProfiler, frames: int = 100):
         return True
         
     except Exception as e:
-        print(f"❌ Error profiling SNES: {e}")
+        print(f"❌ Error profiling Retro16: {e}")
         return False
 
 

@@ -9,7 +9,7 @@ This document outlines planned features, enhancements, and improvements for the 
 
 ### ✅ Completed Features
 - Interface-based architecture with zero data duplication
-- Three rendering modes: Text, Graphics (Pygame), SNES (Authentic 16-bit)
+- Three rendering modes: Text, Graphics (Pygame), Retro16 (Authentic 16-bit)
 - Graphics adapter with full interface implementation
 - Configuration management with JSON persistence
 - Unified launcher with mode selection

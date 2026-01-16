@@ -48,7 +48,7 @@ python3 diagnose.py
 - ✅ Configuration system profiling
 - ✅ Utility function profiling (10,000 iterations)
 - ✅ Pygame renderer profiling (100 frames)
-- ✅ SNES renderer profiling (100 frames)
+- ✅ Retro16 renderer profiling (100 frames)
 - ✅ Statistical analysis (min/max/mean/median/stdev)
 - ✅ Bottleneck identification (> 1ms operations)
 - ✅ Variance analysis (inconsistent performance)
@@ -88,7 +88,7 @@ python3 profile_graphics.py
 - ✅ Tileset tiles (8 types, 32×32)
 - ✅ UI elements (5 types, various sizes)
 - ✅ Effect sprites (7 types, 64×64)
-- ✅ SNES palette reference (visual grid)
+- ✅ Retro16 palette reference (visual grid)
 - ✅ Asset manifest generation (JSON)
 - ✅ Automatic directory creation
 - ✅ Summary statistics

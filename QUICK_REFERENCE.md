@@ -4,10 +4,10 @@
 
 ### Launch Game
 ```bash
-python3 launch_game.py                    # Default (SNES mode)
+python3 launch_game.py                    # Default (Retro16 mode)
 python3 launch_game.py --mode text        # Text-only mode
 python3 launch_game.py --mode graphics    # Modern 2D graphics
-python3 launch_game.py --mode snes        # Authentic SNES graphics
+python3 launch_game.py --mode retro16     # Authentic 16-bit graphics
 ```
 
 ### System Health
@@ -64,7 +64,7 @@ COIN-OPERATED-JRPG/
 │   ├── graphics/
 │   │   ├── adapter.py          # Graphics adapter
 │   │   ├── pygame_renderer.py  # Modern renderer
-│   │   └── snes_pygame_renderer.py  # SNES renderer
+│   │   └── snes_pygame_renderer.py  # Retro16 renderer
 │   ├── core/                   # Game engine
 │   ├── systems/                # Game systems
 │   └── content/                # Story content
@@ -79,7 +79,7 @@ COIN-OPERATED-JRPG/
 │   ├── TROUBLESHOOTING.md      # ⭐ Troubleshooting guide
 │   ├── ROADMAP.md              # ⭐ Feature roadmap
 │   ├── DEPLOYMENT.md           # Deployment guide
-│   ├── SNES_GRAPHICS.md        # SNES system docs
+│   ├── SNES_GRAPHICS.md        # Retro16 system docs
 │   ├── GRAPHICS_SYSTEM.md      # Graphics docs
 │   ├── ARCHITECTURE_DIAGRAM.md # Architecture
 │   └── DEVELOPMENT.md          # Dev guide
@@ -130,7 +130,7 @@ python3 automation/validate_feature_parity.py
 |------|-----|-----|-----|---------|
 | Text | <1% | <50MB | N/A | <1s |
 | Graphics | <5% | <150MB | 60 | <3s |
-| SNES | <8% | <180MB | 60 | <3s |
+| Retro16 | <8% | <180MB | 60 | <3s |
 
 ### Profiling
 ```bash
@@ -235,7 +235,7 @@ python3 diagnose.py                 # Full diagnostic
 - [ROADMAP.md](docs/ROADMAP.md) - Future features
 
 ### Graphics System
-- [SNES_GRAPHICS.md](docs/SNES_GRAPHICS.md) - SNES renderer
+- [SNES_GRAPHICS.md](docs/SNES_GRAPHICS.md) - Retro16 renderer
 - [GRAPHICS_SYSTEM.md](docs/GRAPHICS_SYSTEM.md) - Modern renderer
 - [GRAPHICS_INTEGRATION.md](GRAPHICS_INTEGRATION.md) - Integration guide
 - [MODES_COMPARISON.md](MODES_COMPARISON.md) - Mode comparison
@@ -299,7 +299,7 @@ kill <PID>                              # Kill process
 - Tab - Switch character
 - 1-9 - Quick actions
 
-### Mouse (Graphics/SNES Mode)
+### Mouse (Graphics/Retro16 Mode)
 - Left Click - Select/Confirm
 - Right Click - Cancel
 - Scroll - Navigate lists

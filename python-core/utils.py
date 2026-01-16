@@ -35,7 +35,7 @@ def check_graphics_dependencies(mode: str) -> Tuple[bool, List[str]]:
     """Check dependencies for specific graphics mode.
     
     Args:
-        mode: 'text', 'graphics', or 'snes'
+        mode: 'text', 'graphics', or 'retro16'
         
     Returns:
         (all_installed, missing_packages) tuple
@@ -45,14 +45,14 @@ def check_graphics_dependencies(mode: str) -> Tuple[bool, List[str]]:
     if mode == 'text':
         return (True, [])
     
-    # Graphics and SNES modes need pygame
+    # Graphics and Retro16 modes need pygame
     try:
         import pygame
     except ImportError:
         missing.append('pygame')
     
-    # SNES mode also needs Pillow
-    if mode == 'snes':
+    # Retro16 mode also needs Pillow
+    if mode == 'retro16':
         try:
             import PIL
         except ImportError:

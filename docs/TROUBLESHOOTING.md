@@ -19,7 +19,7 @@ This will check your system and identify most common problems automatically.
 #### Issue: "ModuleNotFoundError: No module named 'pygame'"
 
 **Symptoms:**
-- Error when trying to launch graphics or SNES mode
+- Error when trying to launch graphics or Retro16 mode
 - Import errors mentioning pygame
 
 **Solution:**
@@ -43,7 +43,7 @@ python3 -m pip install pygame
 #### Issue: "ModuleNotFoundError: No module named 'PIL'"
 
 **Symptoms:**
-- Error when trying to use SNES mode
+- Error when trying to use Retro16 mode
 - Import errors mentioning PIL or Pillow
 
 **Solution:**
@@ -165,7 +165,7 @@ xvfb-run python3 launch_game.py --mode graphics
 
 ---
 
-#### Issue: "Colors look wrong in SNES mode"
+#### Issue: "Colors look wrong in Retro16 mode"
 
 **Symptoms:**
 - Washed out colors
@@ -174,26 +174,26 @@ xvfb-run python3 launch_game.py --mode graphics
 
 **Solution:**
 
-1. **Check SNES palette is being used:**
+1. **Check Retro16 palette is being used:**
    ```bash
    # Generate palette reference
    python3 generate_assets.py
    # Check assets/palettes/snes_palette.png
    ```
 
-2. **Verify SNES mode is actually active:**
+2. **Verify Retro16 mode is actually active:**
    ```python
    # Check config
    from python-core.config import ConfigManager
    config = ConfigManager()
-   print(config.get('graphics.mode'))  # Should be 'snes'
+   print(config.get('graphics.mode'))  # Should be 'retro16'
    ```
 
 3. **Force palette refresh:**
    ```bash
    # Delete config and restart
    rm ~/.coin-operated-jrpg/config.json
-   python3 launch_game.py --mode snes
+   python3 launch_game.py --mode retro16
    ```
 
 ---
@@ -635,7 +635,7 @@ Expected performance on reference hardware:
 **Benchmarks:**
 - Text mode: < 1% CPU, < 50MB RAM
 - Graphics mode: < 5% CPU, < 150MB RAM, 60 FPS
-- SNES mode: < 8% CPU, < 180MB RAM, 60 FPS
+- Retro16 mode: < 8% CPU, < 180MB RAM, 60 FPS
 - Startup time: < 3 seconds
 - Save/load: < 0.1 seconds
 

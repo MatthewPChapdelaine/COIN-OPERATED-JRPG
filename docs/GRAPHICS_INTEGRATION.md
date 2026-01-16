@@ -49,7 +49,7 @@ python-core/
 │   ├── adapter.py            # Implements interfaces
 │   ├── pygame_renderer.py    # Main pygame renderer
 │   ├── asset_manager.py      # Asset loading by ID
-│   └── [SNES renderers]      # Retro graphics system
+│   └── [Retro16 renderers]      # Retro graphics system
 ├── core/
 │   ├── game_engine.py        # Core game loop
 │   └── character.py          # Character system
@@ -263,7 +263,7 @@ GitHub Actions automatically validates:
 
 ### ✅ Flexible Rendering
 - Swap renderers easily (pygame → others)
-- Multiple graphics modes (2D, SNES-style, 3D)
+- Multiple graphics modes (2D, Retro16-style, 3D)
 - Text mode always available as fallback
 
 ### ✅ Clean Architecture

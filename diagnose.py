@@ -122,9 +122,9 @@ def check_import_paths():
         print(f"❌ graphics.pygame_renderer - Import error: {e}")
         all_good = False
     
-    # Try SNES renderer
+    # Try Retro16 renderer
     try:
-        from graphics.snes_pygame_renderer import SNESPygameRenderer
+        from graphics.snes_pygame_renderer import Retro16PygameRenderer
         print("✅ graphics.snes_pygame_renderer - Can import")
     except Exception as e:
         print(f"❌ graphics.snes_pygame_renderer - Import error: {e}")

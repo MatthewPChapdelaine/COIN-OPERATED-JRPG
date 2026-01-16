@@ -241,7 +241,7 @@ class ReleaseManager:
             f.write("Modes:\n")
             f.write("- Text: python3 launch_game.py --mode text\n")
             f.write("- Graphics: python3 launch_game.py --mode graphics\n")
-            f.write("- SNES: python3 launch_game.py --mode snes\n")
+            f.write("- Retro16: python3 launch_game.py --mode retro16\n")
         
         print(f"  ✅ Created release notes")
         

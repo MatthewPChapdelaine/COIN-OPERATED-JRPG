@@ -3,13 +3,13 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Game Status: Playable](https://img.shields.io/badge/status-playable-green.svg)]()
-[![Graphics: SNES-Style](https://img.shields.io/badge/graphics-SNES--style-ff69b4.svg)]()
+[![Graphics: Retro16-Style](https://img.shields.io/badge/graphics-Retro16--style-ff69b4.svg)]()
 [![Platform: Cross-Platform](https://img.shields.io/badge/platform-Cross--Platform-lightgrey.svg)]()
 [![Steam: Ready](https://img.shields.io/badge/Steam-ready-blue.svg)]()
 
-**An authentic SNES-style JRPG set in the Orbspace universe**
+**An authentic Retro16-style JRPG set in the Orbspace universe**
 
-Follow Coin's journey from sentient magical artifact to Time Goddess in this turn-based RPG featuring deep storytelling, strategic combat, and meaningful player choices. Features **authentic 16-bit graphics** generated procedurally to recreate the golden age of SNES JRPGs.
+Follow Coin's journey from sentient magical artifact to Time Goddess in this turn-based RPG featuring deep storytelling, strategic combat, and meaningful player choices. Features **authentic 16-bit graphics** generated procedurally to recreate the golden age of classic JRPGs.
 
 ## ✨ New Features
 
@@ -38,7 +38,7 @@ chmod +x setup_linux.sh
 # Verify installation
 ./verify.sh
 
-# Run the game (SNES mode by default)
+# Run the game (Retro16 mode by default)
 python3 launch_game.py
 ```
 
@@ -48,11 +48,11 @@ python3 launch_game.py
 # Install dependencies
 pip3 install -r requirements.txt
 
-# Run the game (SNES-style graphics) 🆕
+# Run the game (Retro16-style graphics) 🆕
 python3 launch_game.py
 
 # Or choose your mode:
-python3 launch_game.py --mode snes      # 16-bit SNES graphics (default)
+python3 launch_game.py --mode retro16    # 16-bit retro graphics (default)
 python3 launch_game.py --mode graphics  # Modern 2D graphics
 python3 launch_game.py --mode text      # Original text mode
 ```
@@ -60,7 +60,7 @@ python3 launch_game.py --mode text      # Original text mode
 ### Test Procedural Graphics
 
 ```bash
-# Generate SNES-style graphics samples ⭐
+# Generate Retro16-style graphics samples ⭐
 python3 snes_demo.py
 
 # Generate game icons
@@ -123,8 +123,8 @@ You are **Coin**, a sentient being created from Domminnian Coins and pure magica
 
 ### 🎨 Graphics Systems
 
-#### SNES-Style System ⭐ NEW!
-- **Authentic 16-bit**: True SNES resolution (256×224) and color depth (15-bit RGB)
+#### Retro16-Style System ⭐ NEW!
+- **Authentic 16-bit**: True retro 16-bit resolution (256×224) and color depth (15-bit RGB)
 - **Pixel-Perfect Sprites**: 16×16 character sprites in classic JRPG style
 - **Tile-Based Maps**: Overworld and dungeon exploration with scrolling camera
 - **Side-View Battles**: Classic FF4-6 style battle screens
@@ -134,10 +134,10 @@ You are **Coin**, a sentient being created from Domminnian Coins and pure magica
 **Benefits:**
 - Authentic golden-age JRPG aesthetic
 - Optimized for retro feel
-- Instant nostalgia for SNES RPG fans
+- Instant nostalgia for classic 16-bit RPG fans
 - Inspired by FF6, Chrono Trigger, Secret of Mana
 
-See [docs/SNES_GRAPHICS.md](docs/SNES_GRAPHICS.md) for complete documentation.
+See [docs/SNES_GRAPHICS.md](docs/SNES_GRAPHICS.md) for complete documentation (Retro16 system).
 
 #### Modern Procedural System
 - **100% Code-Generated:** All graphics created procedurally - no external image files required
@@ -355,7 +355,7 @@ Profiles:
 - Configuration system
 - Utility functions (10,000 iterations)
 - Pygame renderer (100 frames)
-- SNES renderer (100 frames)
+- Retro16 renderer (100 frames)
 - Bottleneck analysis
 - Performance recommendations
 
@@ -373,7 +373,7 @@ Generates:
 - Tileset (8 tiles)
 - UI elements (5 elements)
 - Effect sprites (7 effects)
-- SNES palette reference
+- Retro16 palette reference
 - Asset manifest (JSON)
 
 ### Release Automation
@@ -417,7 +417,7 @@ Tests:
 - **[Game Design Document](COIN_OPERATED%20JRPG.md)** - Complete design specification
 
 ### Graphics System
-- **[SNES Graphics System](docs/SNES_GRAPHICS.md)** - Authentic 16-bit JRPG visuals
+- **[Retro16 Graphics System](docs/SNES_GRAPHICS.md)** - Authentic 16-bit JRPG visuals
 - **[Modern Graphics System](docs/GRAPHICS_SYSTEM.md)** - Procedural graphics documentation
 - **[Graphics Integration](GRAPHICS_INTEGRATION.md)** - Integration guide
 - **[Architecture Diagram](docs/ARCHITECTURE_DIAGRAM.md)** - System architecture
@@ -426,7 +426,7 @@ Tests:
 - **[Troubleshooting Guide](docs/TROUBLESHOOTING.md)** ⭐ NEW! - Common issues and solutions
 - **[Feature Roadmap](docs/ROADMAP.md)** ⭐ NEW! - Planned features and timeline
 - **[Quickstart Guide](QUICKSTART.md)** - Fast setup for developers
-- **[Modes Comparison](MODES_COMPARISON.md)** - Text vs Graphics vs SNES
+- **[Modes Comparison](MODES_COMPARISON.md)** - Text vs Graphics vs Retro16
 
 ### Implementation Reports
 - **[Complete System Report](COMPLETE_SYSTEM_REPORT.md)** - Full implementation details

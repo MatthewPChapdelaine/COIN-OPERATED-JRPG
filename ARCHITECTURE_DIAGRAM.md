@@ -14,7 +14,7 @@
                     ┌───────────────┼───────────────┐
                     │               │               │
          ┌──────────▼──────┐  ┌────▼─────┐  ┌─────▼────────┐
-         │   Text Mode     │  │ Graphics │  │  SNES Mode   │
+         │   Text Mode     │  │ Graphics │  │ Retro16 Mode │
          │   (Terminal)    │  │   Mode   │  │  (Retro)     │
          │                 │  │ (Modern) │  │              │
          │ No graphics     │  │ 800x600  │  │ 256x224 (3x) │
@@ -114,7 +114,7 @@
 │       ┌─────────┼─────────┐                                             │
 │       │         │         │                                             │
 │   ┌───▼───┐ ┌──▼───┐ ┌──▼────┐                                        │
-│   │ Text  │ │Graph-│ │ SNES  │                                        │
+│   │ Text  │ │Graph-│ │Retro16│                                        │
 │   │ Mode  │ │ ics  │ │ Mode  │                                        │
 │   └───────┘ └──────┘ └───────┘                                        │
 │                                                                           │
@@ -168,8 +168,8 @@
 │      ├── adapter.py         ← Interface implementation                  │
 │      ├── pygame_renderer.py ← Modern graphics                           │
 │      ├── snes_pygame_renderer.py ← Retro graphics                       │
-│      ├── snes_renderer.py   ← SNES graphics generator                   │
-│      └── [other SNES files]                                             │
+│      ├── snes_renderer.py   ← Retro16 graphics generator                   │
+│      └── [other Retro16 files]                                             │
 │                                                                           │
 │  Root level:                                                             │
 │  ├── launch_game.py         ← Unified launcher (all modes)              │

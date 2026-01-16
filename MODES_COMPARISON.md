@@ -8,14 +8,14 @@ COIN-OPERATED JRPG offers three distinct gameplay modes, each with unique streng
 
 ## Quick Comparison Table
 
-| Feature | Text Mode | Graphics Mode | SNES Mode |
+| Feature | Text Mode | Graphics Mode | Retro16 Mode |
 |---------|-----------|---------------|-----------|
 | **Display** | Terminal | 800x600 | 768x672 (3x scaled) |
 | **Graphics** | None | Modern 2D | 16-bit Retro |
 | **Dependencies** | None | pygame | pygame + Pillow |
 | **Memory Usage** | Minimal | Low | Moderate |
 | **Performance** | Instant | Fast | Fast |
-| **Visual Style** | Text-only | Contemporary | Authentic SNES |
+| **Visual Style** | Text-only | Contemporary | Authentic 16-bit |
 | **Accessibility** | Highest | High | Moderate |
 | **Nostalgia Factor** | Low | Low | ⭐ Very High |
 | **Best For** | Story focus | General play | Retro experience |
@@ -105,22 +105,22 @@ python3 launch_game.py --mode graphics
 
 ---
 
-### SNES Mode 🎮 (Recommended)
+### Retro16 Mode 🎮 (Recommended)
 
 **What It Is:**
-- Authentic 16-bit SNES graphics
+- Authentic 16-bit retro graphics
 - 256x224 native resolution
 - Procedurally generated sprites
 - Classic JRPG aesthetic
 
 **Pros:**
-✅ Authentic SNES experience
+✅ Authentic retro experience
 ✅ Nostalgic 16-bit graphics
 ✅ Classic JRPG battle screen
 ✅ Procedural sprite generation
 ✅ Retro color palette
 ✅ Side-view battles (like FF6)
-✅ True to SNES hardware specs
+✅ True to 16-bit hardware specs
 ✅ Pixel-perfect rendering
 
 **Cons:**
@@ -130,7 +130,7 @@ python3 launch_game.py --mode graphics
 ❌ May feel dated to some
 
 **Best For:**
-- SNES/retro fans
+- Retro/classic JRPG fans
 - Classic JRPG enthusiasts
 - Nostalgic players
 - Authentic 16-bit experience
@@ -146,7 +146,7 @@ python3 launch_game.py --mode graphics
 
 **Launch:**
 ```bash
-python3 launch_game.py --mode snes
+python3 launch_game.py --mode retro16
 ```
 
 ---
@@ -155,7 +155,7 @@ python3 launch_game.py --mode snes
 
 ### Graphics & Display
 
-| Aspect | Text | Graphics | SNES |
+| Aspect | Text | Graphics | Retro16 |
 |--------|------|----------|------|
 | Resolution | Terminal | 800x600 | 256x224 (×3) |
 | Color Depth | N/A | 32-bit | 16-bit palette |
@@ -167,8 +167,8 @@ python3 launch_game.py --mode snes
 
 ### Performance
 
-| Metric | Text | Graphics | SNES |
-|--------|------|----------|------|
+| Metric | Text | Graphics | Retro16 |
+|--------|------|----------|---------|
 | Load Time | Instant | <1s | <2s |
 | RAM Usage | <50MB | ~100MB | ~150MB |
 | CPU Usage | Minimal | Low | Low-Med |
@@ -177,8 +177,8 @@ python3 launch_game.py --mode snes
 
 ### Gameplay Features
 
-| Feature | Text | Graphics | SNES |
-|---------|------|----------|------|
+| Feature | Text | Graphics | Retro16 |
+|---------|------|----------|---------|
 | Combat | Text-based | Visual | Classic JRPG |
 | Exploration | Text nav | Free move | Free move |
 | Dialogue | Text boxes | Overlay | Text box |
@@ -195,7 +195,7 @@ help - Show commands
 quit - Exit
 ```
 
-**Graphics/SNES Mode:**
+**Graphics/Retro16 Mode:****
 ```
 Arrow Keys    Move character
 Space/Enter   Interact
@@ -210,7 +210,7 @@ ESC           Quit
 ## Use Case Recommendations
 
 ### For Maximum Nostalgia
-**Use: SNES Mode**
+**Use: Retro16 Mode**
 - Authentic 16-bit experience
 - Classic JRPG battle screen
 - Retro color palette
@@ -237,7 +237,7 @@ ESC           Quit
 - Works anywhere
 
 ### For Streaming/Recording
-**Use: SNES Mode or Graphics Mode**
+**Use: Retro16 Mode or Graphics Mode**
 - Visual appeal
 - Clear UI
 - Good for audience
@@ -257,7 +257,7 @@ All modes use the **same save files**! You can:
 
 1. Start in text mode
 2. Save your game
-3. Load in SNES mode
+3. Load in Retro16 mode
 4. Continue from exact same point
 
 **Save file location:**
@@ -265,8 +265,8 @@ All modes use the **same save files**! You can:
 
 **To switch modes:**
 ```bash
-# Currently in text mode, want to try SNES
-python3 launch_game.py --mode snes
+# Currently in text mode, want to try Retro16
+python3 launch_game.py --mode retro16
 
 # Load your save - continues from same point!
 ```
@@ -287,10 +287,10 @@ pip install pygame
 python3 launch_game.py --mode graphics
 ```
 
-### SNES Mode (Full Experience)
+### Retro16 Mode (Full Experience)
 ```bash
 pip install pygame Pillow
-python3 launch_game.py --mode snes
+python3 launch_game.py --mode retro16
 ```
 
 ### All Modes
@@ -309,7 +309,7 @@ Terminal ← Game Engine ← Game Logic
 ```
 Simple, direct connection.
 
-### Graphics/SNES Architecture
+### Graphics/Retro16 Architecture
 ```
 Renderer → Adapter → Game Engine → Game Logic
 ```
@@ -331,8 +331,8 @@ Same format for all modes!
 
 Tested on: Intel i5, 8GB RAM, Integrated Graphics
 
-| Metric | Text | Graphics | SNES |
-|--------|------|----------|------|
+| Metric | Text | Graphics | Retro16 |
+|--------|------|----------|---------|
 | Launch Time | 0.1s | 0.8s | 1.5s |
 | RAM Usage | 45MB | 95MB | 140MB |
 | CPU (idle) | 0% | 1% | 2% |
@@ -344,13 +344,13 @@ Tested on: Intel i5, 8GB RAM, Integrated Graphics
 ## Frequently Asked Questions
 
 **Q: Which mode should I use?**
-A: SNES mode for authentic experience, Graphics for modern feel, Text for story focus.
+A: Retro16 mode for authentic experience, Graphics for modern feel, Text for story focus.
 
 **Q: Can I switch modes mid-game?**
 A: Yes! Save files work across all modes.
 
 **Q: Which mode is most authentic?**
-A: SNES mode replicates classic 16-bit JRPGs.
+A: Retro16 mode replicates classic 16-bit JRPGs.
 
 **Q: Do all modes have the same content?**
 A: Yes! Same quests, story, combat, everything.
@@ -362,10 +362,10 @@ A: Text mode, but all modes are fast.
 A: Yes! Text mode works on anything.
 
 **Q: Which mode is best for streaming?**
-A: SNES or Graphics modes show visual content.
+A: Retro16 or Graphics modes show visual content.
 
 **Q: Are graphics procedurally generated?**
-A: Yes, in SNES mode! Generated on the fly.
+A: Yes, in Retro16 mode! Generated on the fly.
 
 ---
 
@@ -390,13 +390,13 @@ A: Yes, in SNES mode! Generated on the fly.
 → **SNES Mode** ⭐⭐⭐⭐⭐
 
 ### First-Time Player
-→ **SNES or Graphics** ⭐⭐⭐⭐
+→ **Retro16 or Graphics** ⭐⭐⭐⭐
 
 ---
 
 ## Bottom Line
 
-**🏆 Overall Winner:** SNES Mode
+**🏆 Overall Winner:** Retro16 Mode
 - Authentic retro experience
 - Beautiful 16-bit graphics
 - Classic JRPG feel

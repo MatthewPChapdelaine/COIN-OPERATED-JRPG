@@ -4,14 +4,14 @@
 
 COIN-OPERATED JRPG supports three gameplay modes:
 
-### 🎨 SNES Mode (Recommended)
+### 🎨 Retro16 Mode (Recommended)
 **Authentic 16-bit graphics with modern interface**
 ```bash
 pip install pygame Pillow
-python3 launch_game.py --mode snes
+python3 launch_game.py --mode retro16
 ```
 - 256x224 resolution (scaled 3x)
-- Authentic SNES-style graphics
+- Authentic Retro16-style graphics
 - Procedurally generated sprites
 - Classic JRPG battle screen
 
@@ -47,7 +47,7 @@ cd COIN-OPERATED-JRPG
 # Install all dependencies
 pip install -r requirements.txt
 
-# Launch game (SNES mode)
+# Launch game (Retro16 mode)
 python3 launch_game.py
 ```
 
@@ -66,7 +66,7 @@ python3 launch_game.py --mode text
 
 ## Controls
 
-### Graphics/SNES Modes
+### Graphics/Retro16 Modes
 ```
 Arrow Keys    Move character
 Space/Enter   Interact with NPCs
@@ -85,13 +85,13 @@ quit          Exit game
 
 ## Game Modes Comparison
 
-| Feature | Text | Graphics | SNES |
+| Feature | Text | Graphics | Retro16 |
 |---------|------|----------|------|
 | Resolution | Terminal | 800x600 | 768x672 |
 | Graphics | None | Modern 2D | 16-bit Retro |
 | Dependencies | None | pygame | pygame + Pillow |
 | Performance | Instant | Fast | Fast |
-| Authenticity | Original | Modern | Authentic SNES |
+| Authenticity | Original | Modern | Authentic 16-bit |
 | Best For | Narrative | General | Retro fans |
 
 ## Troubleshooting
@@ -112,7 +112,7 @@ pip install Pillow
 3. Try text mode: `python3 launch_game.py --mode text`
 
 ### Game runs too slowly
-- Try graphics mode instead of SNES: `python3 launch_game.py --mode graphics`
+- Try graphics mode instead of Retro16: `python3 launch_game.py --mode graphics`
 - Or use text mode: `python3 launch_game.py --mode text`
 
 ## List All Modes
@@ -134,17 +134,17 @@ python3 automation/validate_interfaces.py
 python3 automation/validate_no_redundancy.py
 ```
 
-### Generate SNES Graphics Samples
+### Generate Retro16 Graphics Samples
 ```bash
 python3 snes_demo.py
 ```
 
 ## Advanced Usage
 
-### Custom Scale Factor (SNES Mode)
+### Custom Scale Factor (Retro16 Mode)
 Edit `launch_game.py` and change:
 ```python
-renderer = SNESPygameRenderer(adapter, scale=3)  # 3x scaling
+renderer = Retro16PygameRenderer(adapter, scale=3)  # 3x scaling
 ```
 Options: 2 (512x448), 3 (768x672), 4 (1024x896)
 
@@ -160,7 +160,7 @@ All three modes use the **same game logic**:
 ```
 Text Mode     ─┐
 Graphics Mode ─┼─→ Game Engine → Game Logic
-SNES Mode     ─┘
+Retro16 Mode  ─┘
 ```
 
 Benefits:
@@ -171,16 +171,16 @@ Benefits:
 
 ## Next Steps
 
-1. **Play the game!** Start with SNES mode for authentic experience
+1. **Play the game!** Start with Retro16 mode for authentic experience
 2. **Read the docs** - See `docs/GRAPHICS_INTEGRATION.md`
-3. **Check examples** - Run `python3 snes_demo.py`
+3. **Check examples** - Run `python3 snes_demo.py` (still uses old filename)
 4. **Contribute** - See `docs/DEVELOPMENT.md`
 
 ## Quick Links
 
 - [Full Documentation](docs/)
 - [Graphics System Guide](docs/GRAPHICS_INTEGRATION.md)
-- [SNES Graphics](docs/SNES_GRAPHICS.md)
+- [Retro16 Graphics](docs/SNES_GRAPHICS.md) (file not yet renamed)
 - [Development Guide](docs/DEVELOPMENT.md)
 
 ## Support
