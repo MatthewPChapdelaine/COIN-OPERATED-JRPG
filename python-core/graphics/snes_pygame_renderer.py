@@ -1,7 +1,7 @@
 """
-COIN-OPERATED JRPG: SNES-Style Pygame Renderer
-Integrates existing SNES graphics system with interface pattern.
-Authentic 16-bit graphics with interface-based architecture.
+COIN-OPERATED JRPG: Retro16-Style Pygame Renderer
+Integrates existing Retro16 graphics system with interface pattern.
+Authentic 16-bit retro graphics with interface-based architecture.
 """
 
 import pygame
@@ -15,26 +15,26 @@ import io
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from interfaces import GameStateInterface, GameCommandInterface, GameEventInterface
 
-# Import SNES graphics modules
+# Import Retro16 graphics modules
 from graphics.snes_renderer import SNESGameRenderer
 from graphics.snes_battle_screen import SNESBattleScreen
 from graphics.snes_ui import SNESUI
 
 
-class SNESPygameRenderer(GameEventInterface):
-    """SNES-style renderer using pygame + PIL.
+class Retro16PygameRenderer(GameEventInterface):
+    """Retro16-style renderer using pygame + PIL.
     
-    Combines authentic SNES graphics generation with pygame display.
+    Combines authentic 16-bit retro graphics generation with pygame display.
     Uses interface pattern for clean separation.
     """
     
-    # SNES resolution
-    SNES_WIDTH = 256
-    SNES_HEIGHT = 224
+    # Retro16 resolution (256x224 - classic 16-bit console standard)
+    RETRO16_WIDTH = 256
+    RETRO16_HEIGHT = 224
     SCALE_FACTOR = 3  # Scale up for modern displays
     
     def __init__(self, adapter: GameStateInterface, scale: int = 3):
-        """Initialize SNES renderer.
+        """Initialize Retro16 renderer.
         
         Args:
             adapter: Adapter implementing GameStateInterface
@@ -42,21 +42,21 @@ class SNESPygameRenderer(GameEventInterface):
         """
         pygame.init()
         self.scale = scale
-        self.display_width = self.SNES_WIDTH * scale
-        self.display_height = self.SNES_HEIGHT * scale
+        self.display_width = self.RETRO16_WIDTH * scale
+        self.display_height = self.RETRO16_HEIGHT * scale
         
         self.screen = pygame.display.set_mode((self.display_width, self.display_height))
-        pygame.display.set_caption("COIN-OPERATED JRPG - SNES Mode")
+        pygame.display.set_caption("COIN-OPERATED JRPG - Retro16 Mode")
         self.clock = pygame.time.Clock()
         self.running = False
         
         # Interface to game logic
         self.adapter = adapter
         
-        # SNES graphics generator
-        self.snes_renderer = SNESGameRenderer()
-        self.snes_battle = SNESBattleScreen()
-        self.snes_ui = SNESUI()
+        # Retro16 graphics generator
+        self.retro16_renderer = SNESGameRenderer()
+        self.retro16_battle = SNESBattleScreen()
+        self.retro16_ui = SNESUI()
         
         # Frame rate (60 FPS for SNES accuracy)
         self.fps = 60
@@ -132,15 +132,15 @@ class SNESPygameRenderer(GameEventInterface):
             self.message_timer = self.message_display_time
     
     def _render(self):
-        """Render current game state in SNES style."""
+        """Render current game state in Retro16 style."""
         # Get game state
         encounter = self.adapter.get_current_encounter()
         
-        # Generate SNES graphics
+        # Generate Retro16 graphics
         if encounter:
-            pil_image = self._render_snes_combat(encounter)
+            pil_image = self._render_retro16_combat(encounter)
         else:
-            pil_image = self._render_snes_overworld()
+            pil_image = self._render_retro16_overworld()
         
         # Convert PIL to pygame surface
         mode = pil_image.mode
@@ -164,8 +164,8 @@ class SNESPygameRenderer(GameEventInterface):
         
         pygame.display.flip()
     
-    def _render_snes_overworld(self) -> Image:
-        """Render overworld in SNES style."""
+    def _render_retro16_overworld(self) -> Image:
+        """Render overworld in Retro16 style."""
         # Get location data
         location = self.adapter.get_player_location()
         party = self.adapter.get_party_members()
@@ -196,19 +196,19 @@ class SNESPygameRenderer(GameEventInterface):
         if party and len(party) > 0:
             character_name = party[0].get('name', 'coin').lower()
         
-        # Render using SNES renderer
+        # Render using Retro16 renderer
         try:
-            scene = self.snes_renderer.render_overworld_scene(
+            scene = self.retro16_renderer.render_overworld_scene(
                 map_data, player_x, player_y, character_name
             )
         except:
             # Fallback to simple rendering
-            scene = Image.new('RGB', (self.SNES_WIDTH, self.SNES_HEIGHT), (20, 80, 20))
+            scene = Image.new('RGB', (self.RETRO16_WIDTH, self.RETRO16_HEIGHT), (20, 80, 20))
         
         return scene
     
-    def _render_snes_combat(self, encounter: Dict[str, Any]) -> Image:
-        """Render combat in SNES style."""
+    def _render_retro16_combat(self, encounter: Dict[str, Any]) -> Image:
+        """Render combat in Retro16 style."""
         party = self.adapter.get_party_members()
         enemies = encounter.get('enemies', [])
         
@@ -234,14 +234,14 @@ class SNESPygameRenderer(GameEventInterface):
                 'type': enemy.get('id', 'unknown')
             })
         
-        # Render using SNES battle screen
+        # Render using Retro16 battle screen
         try:
-            battle_img = self.snes_battle.render_battle_scene(
+            battle_img = self.retro16_battle.render_battle_scene(
                 party_data, enemy_data, 'grassland'
             )
         except:
             # Fallback to simple rendering
-            battle_img = Image.new('RGB', (self.SNES_WIDTH, self.SNES_HEIGHT), (40, 60, 100))
+            battle_img = Image.new('RGB', (self.RETRO16_WIDTH, self.RETRO16_HEIGHT), (40, 60, 100))
             from PIL import ImageDraw
             draw = ImageDraw.Draw(battle_img)
             draw.text((10, 10), "BATTLE", fill=(255, 255, 255))

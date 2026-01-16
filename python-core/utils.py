@@ -228,7 +228,7 @@ def validate_mode(mode: str) -> bool:
     Returns:
         True if valid, False otherwise
     """
-    return mode in ['text', 'graphics', 'snes']
+    return mode in ['text', 'graphics', 'retro16']
 
 
 def get_mode_description(mode: str) -> str:
@@ -243,7 +243,7 @@ def get_mode_description(mode: str) -> str:
     descriptions = {
         'text': 'Text-based interactive fiction',
         'graphics': 'Modern 2D graphics renderer',
-        'snes': 'Authentic SNES-style 16-bit graphics'
+        'retro16': 'Authentic 16-bit retro graphics'
     }
     return descriptions.get(mode, 'Unknown mode')
 
@@ -260,7 +260,7 @@ def get_mode_requirements(mode: str) -> List[str]:
     requirements = {
         'text': [],
         'graphics': ['pygame'],
-        'snes': ['pygame', 'Pillow']
+        'retro16': ['pygame', 'Pillow']
     }
     return requirements.get(mode, [])
 

@@ -14,12 +14,12 @@ class ConfigManager:
     DEFAULT_CONFIG = {
         'version': '1.0.0',
         'graphics': {
-            'mode': 'snes',  # 'text', 'graphics', 'snes'
+            'mode': 'retro16',  # 'text', 'graphics', 'retro16'
             'resolution': {
                 'width': 768,
                 'height': 672
             },
-            'scale': 3,  # SNES scaling factor
+            'scale': 3,  # Retro16 scaling factor
             'fps': 60,
             'fullscreen': False,
             'vsync': True
@@ -165,9 +165,9 @@ class ConfigManager:
         """Set graphics mode.
         
         Args:
-            mode: 'text', 'graphics', or 'snes'
+            mode: 'text', 'graphics', or 'retro16'
         """
-        if mode in ['text', 'graphics', 'snes']:
+        if mode in ['text', 'graphics', 'retro16']:
             self.set('graphics.mode', mode)
     
     def get_resolution(self) -> tuple:

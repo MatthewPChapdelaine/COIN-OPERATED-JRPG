@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 COIN-OPERATED JRPG - Unified Graphics Launcher
-Supports multiple rendering modes: Standard, SNES-style, and Text.
+Supports multiple rendering modes: Standard, Retro16-style, and Text.
 """
 
 import sys
@@ -95,16 +95,16 @@ def launch_graphics_mode():
         print("\nThanks for playing!")
 
 
-def launch_snes_mode():
-    """Launch SNES-style graphics mode."""
-    print("🎮 COIN-OPERATED JRPG - SNES Mode")
+def launch_retro16_mode():
+    """Launch Retro16-style graphics mode."""
+    print("🎮 COIN-OPERATED JRPG - Retro16 Mode")
     print("=" * 50)
     
     try:
         from core.game_engine import GameEngine, GameState
         from core.character import Character, CharacterRole, CharacterFaction
         from graphics.adapter import GraphicsAdapter
-        from graphics.snes_pygame_renderer import SNESPygameRenderer
+        from graphics.snes_pygame_renderer import Retro16PygameRenderer
         from config import get_config
     except ImportError as e:
         print(f"⚠️  Import error: {e}")
@@ -136,11 +136,11 @@ def launch_snes_mode():
     # Get scale from config
     scale = config.get('graphics.scale', 3)
     
-    # Create SNES renderer
-    print(f"Initializing SNES renderer (scale: {scale}x)...")
-    print(f"📺 Resolution: 256x224 (SNES native) scaled to {256*scale}x{224*scale}")
+    # Create Retro16 renderer
+    print(f"Initializing Retro16 renderer (scale: {scale}x)...")
+    print(f"📺 Resolution: 256x224 (16-bit standard) scaled to {256*scale}x{224*scale}")
     try:
-        renderer = SNESPygameRenderer(adapter, scale=scale)
+        renderer = Retro16PygameRenderer(adapter, scale=scale)
         adapter.register_event_listener(renderer)
     except Exception as e:
         print(f"⚠️  Failed to initialize renderer: {e}")
@@ -152,7 +152,7 @@ def launch_snes_mode():
     print("  A - Attack (in combat)")
     print("  S - Save")
     print("  ESC - Quit")
-    print("\n🎨 Authentic 16-bit SNES graphics!")
+    print("\n🎨 Authentic 16-bit retro graphics!")
     print("=" * 50)
     
     try:
@@ -178,21 +178,21 @@ def main():
 Graphics Modes:
   text      Text-based interactive fiction (original)
   graphics  Standard pygame graphics renderer
-  snes      Authentic SNES-style 16-bit graphics (default)
+  retro16   Authentic 16-bit retro graphics (default)
 
 Examples:
-  python3 launch.py                # SNES mode (default)
-  python3 launch.py --mode snes    # SNES mode (explicit)
-  python3 launch.py --mode graphics  # Standard graphics
-  python3 launch.py --mode text    # Text mode
+  python3 launch.py                   # Retro16 mode (default)
+  python3 launch.py --mode retro16    # Retro16 mode (explicit)
+  python3 launch.py --mode graphics   # Standard graphics
+  python3 launch.py --mode text       # Text mode
         """
     )
     
     parser.add_argument(
         '--mode', '-m',
-        choices=['text', 'graphics', 'snes'],
-        default='snes',
-        help='Graphics mode to use (default: snes)'
+        choices=['text', 'graphics', 'retro16'],
+        default='retro16',
+        help='Graphics mode to use (default: retro16)'
     )
     
     parser.add_argument(
@@ -214,7 +214,7 @@ Examples:
         print("              Modern 2D graphics")
         print("              Requires: pygame")
         print("")
-        print("  snes      - SNES-style 16-bit graphics (default)")
+        print("  retro16   - 16-bit retro graphics (default)")
         print("              256x224 resolution (scaled 3x)")
         print("              Authentic retro aesthetics")
         print("              Requires: pygame, Pillow")
@@ -227,7 +227,7 @@ Examples:
     print("=" * 50 + "\n")
     
     # Check for pygame if graphics mode selected
-    if args.mode in ['graphics', 'snes']:
+    if args.mode in ['graphics', 'retro16']:
         try:
             import pygame
         except ImportError:
@@ -236,7 +236,7 @@ Examples:
             print("\nOr run in text mode: python3 launch.py --mode text")
             sys.exit(1)
         
-        if args.mode == 'snes':
+        if args.mode == 'retro16':
             try:
                 import PIL
             except ImportError:
@@ -250,8 +250,8 @@ Examples:
         launch_text_mode()
     elif args.mode == 'graphics':
         launch_graphics_mode()
-    elif args.mode == 'snes':
-        launch_snes_mode()
+    elif args.mode == 'retro16':
+        launch_retro16_mode()
 
 
 if __name__ == "__main__":
