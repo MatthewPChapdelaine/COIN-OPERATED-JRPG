@@ -1,0 +1,24 @@
+name: Graphics Integration Validation
+
+on: [push, pull_request]
+
+jobs:
+  redundancy-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+        
+      - name: Run redundancy audit
+        run: python3 automation/validate_no_redundancy.py
+        
+      - name: Check interface compliance
+        run: python3 automation/validate_interfaces.py
+        
+      - name: Verify save compatibility
+        run: python3 automation/validate_save_files.py
+        
+      - name: Test cross-mode functionality
+        run: python3 automation/validate_feature_parity.py

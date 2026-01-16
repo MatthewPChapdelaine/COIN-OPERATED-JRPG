@@ -4,12 +4,21 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Game Status: Playable](https://img.shields.io/badge/status-playable-green.svg)]()
 [![Graphics: SNES-Style](https://img.shields.io/badge/graphics-SNES--style-ff69b4.svg)]()
-[![Platform: Linux](https://img.shields.io/badge/platform-Linux-lightgrey.svg)]()
+[![Platform: Cross-Platform](https://img.shields.io/badge/platform-Cross--Platform-lightgrey.svg)]()
 [![Steam: Ready](https://img.shields.io/badge/Steam-ready-blue.svg)]()
 
 **An authentic SNES-style JRPG set in the Orbspace universe**
 
 Follow Coin's journey from sentient magical artifact to Time Goddess in this turn-based RPG featuring deep storytelling, strategic combat, and meaningful player choices. Features **authentic 16-bit graphics** generated procedurally to recreate the golden age of SNES JRPGs.
+
+## ✨ New Features
+
+- **🛠️ Diagnostic Tool**: Automated system health checks with `diagnose.py`
+- **📊 Performance Profiler**: Analyze rendering performance with `profile_graphics.py`
+- **🎨 Asset Generator**: Create placeholder graphics with `generate_assets.py`
+- **📦 Release Automation**: Build and package releases with `build_release.py`
+- **📖 Comprehensive Documentation**: Roadmap, troubleshooting, and architecture guides
+- **✅ Test Suite**: Complete unit and integration testing framework
 
 ---
 
@@ -29,8 +38,8 @@ chmod +x setup_linux.sh
 # Verify installation
 ./verify.sh
 
-# Run the game
-python3 play.py
+# Run the game (SNES mode by default)
+python3 launch_game.py
 ```
 
 ### Manual Setup (All Platforms)
@@ -39,8 +48,13 @@ python3 play.py
 # Install dependencies
 pip3 install -r requirements.txt
 
-# Run the game
-python3 play.py
+# Run the game (SNES-style graphics) 🆕
+python3 launch_game.py
+
+# Or choose your mode:
+python3 launch_game.py --mode snes      # 16-bit SNES graphics (default)
+python3 launch_game.py --mode graphics  # Modern 2D graphics
+python3 launch_game.py --mode text      # Original text mode
 ```
 
 ### Test Procedural Graphics
@@ -313,13 +327,112 @@ steamcmd +login YOUR_USERNAME +run_app_build steam_app_build.vdf +quit
 
 ---
 
-## 📚 Documentation
+## �️ Developer Tools
 
-- **[Deployment Guide](docs/DEPLOYMENT.md)** ⭐ NEW! - Linux setup and Steam publishing
-- **[SNES Graphics System](docs/SNES_GRAPHICS.md)** - Authentic 16-bit JRPG visuals
-- **[Modern Graphics System](docs/GRAPHICS_SYSTEM.md)** - Complete procedural graphics documentation
+### System Diagnostics
+Run automated health checks to identify issues:
+```bash
+python3 diagnose.py
+```
+
+Features:
+- Python version check
+- Dependency verification
+- File structure validation
+- Import path testing
+- Pygame display test
+- Configuration check
+- Quick functional test
+
+### Performance Profiling
+Analyze graphics rendering performance:
+```bash
+python3 profile_graphics.py
+```
+
+Profiles:
+- Adapter operations (1000 iterations)
+- Configuration system
+- Utility functions (10,000 iterations)
+- Pygame renderer (100 frames)
+- SNES renderer (100 frames)
+- Bottleneck analysis
+- Performance recommendations
+
+### Asset Generation
+Create placeholder graphics assets:
+```bash
+python3 generate_assets.py
+```
+
+Generates:
+- Character sprites (5 characters)
+- Enemy sprites (8 enemies)
+- NPC sprites (5 NPCs)
+- Item icons (8 items)
+- Tileset (8 tiles)
+- UI elements (5 elements)
+- Effect sprites (7 effects)
+- SNES palette reference
+- Asset manifest (JSON)
+
+### Release Automation
+Build and package releases:
+```bash
+python3 build_release.py
+```
+
+Automates:
+- Prerequisite checks
+- Test suite execution
+- Code quality checks
+- Build artifact cleaning
+- Package creation
+- Checksum generation
+- Git tag creation
+
+### Testing
+Run comprehensive test suite:
+```bash
+python3 test_graphics_system.py
+```
+
+Tests:
+- Interface compliance
+- Graphics adapter
+- Configuration system
+- Utility functions
+- Validation scripts
+- Integration testing
+- File structure
+
+---
+
+## �📚 Documentation
+
+### Core Documentation
+- **[README](README.md)** - This file (quick start, features overview)
+- **[Deployment Guide](docs/DEPLOYMENT.md)** - Linux setup and Steam publishing
 - **[Development Guide](docs/DEVELOPMENT.md)** - For developers and modders
 - **[Game Design Document](COIN_OPERATED%20JRPG.md)** - Complete design specification
+
+### Graphics System
+- **[SNES Graphics System](docs/SNES_GRAPHICS.md)** - Authentic 16-bit JRPG visuals
+- **[Modern Graphics System](docs/GRAPHICS_SYSTEM.md)** - Procedural graphics documentation
+- **[Graphics Integration](GRAPHICS_INTEGRATION.md)** - Integration guide
+- **[Architecture Diagram](docs/ARCHITECTURE_DIAGRAM.md)** - System architecture
+
+### Developer Resources
+- **[Troubleshooting Guide](docs/TROUBLESHOOTING.md)** ⭐ NEW! - Common issues and solutions
+- **[Feature Roadmap](docs/ROADMAP.md)** ⭐ NEW! - Planned features and timeline
+- **[Quickstart Guide](QUICKSTART.md)** - Fast setup for developers
+- **[Modes Comparison](MODES_COMPARISON.md)** - Text vs Graphics vs SNES
+
+### Implementation Reports
+- **[Complete System Report](COMPLETE_SYSTEM_REPORT.md)** - Full implementation details
+- **[Implementation Summary](IMPLEMENTATION_SUMMARY.md)** - Overview of systems
+- **[Content Expansion Summary](CONTENT_EXPANSION_SUMMARY.md)** - Story and content
+- **[Procedural Graphics Summary](PROCEDURAL_GRAPHICS_SUMMARY.md)** - Graphics tech
 
 
 ---
