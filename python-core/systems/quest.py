@@ -190,7 +190,7 @@ class QuestManager:
         
         return Ok(updated_quest)
     
-    @verify_complexity(time="O(n)", description="Updates m objectives in quest")
+    @verify_complexity(time="O(n)", description="Updates n objectives in quest")
     def update_quest_objective(self, quest_id: str, objective_index: int,
                                progress: int) -> Result[QuestData, str]:
         """Update a specific quest objective.
