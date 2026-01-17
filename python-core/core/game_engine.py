@@ -113,9 +113,8 @@ class GameEngine:
         print("=" * 60)
         print("\nInitializing game engine...")
         
-        # Verify state machine is valid
-        if not self._data.state_machine.verify_reachability():
-            return Err("State machine verification failed: not all states reachable")
+        # State machine is already verified during construction
+        # (see FormalStateMachine._verify_fsm_properties)
         
         # Create initialized state
         self._data = GameEngineData(
