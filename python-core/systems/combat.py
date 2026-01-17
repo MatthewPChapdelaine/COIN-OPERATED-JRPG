@@ -22,7 +22,7 @@ import random
 
 # Import AAA Standards
 from aaa_standards.result_types import Result, Ok, Err
-from aaa_standards.type_definitions import CharacterData, CombatData, CombatAction
+from aaa_standards.type_definitions import CharacterData, CombatData, CombatAction, AbilityData
 from aaa_standards.formal_specs import verify_complexity, requires, ensures
 from aaa_standards.performance import LRUCache
 
@@ -91,10 +91,10 @@ class CombatSystem:
         self._combat_data: Optional[CombatData] = None
         self._combat_active: bool = False
         self._escaped: bool = False
-        self._combat_log: PyList[str] = []
+        self._combat_log: PyPyList[str] = []
         self._damage_cache: LRUCache[Tuple[str, str], int] = LRUCache(capacity=50)
     
-    @verify_complexity("O(n log n)", "Sorting turn order by speed")
+    @verify_complexity(time="O(n log n)", description="Sorting turn order by speed")
     @requires(lambda self, player_party, enemy_party: len(player_party) > 0 and len(enemy_party) > 0,
               "Both parties must have at least one character")
     def start_combat(self, player_party: Tuple[Character, ...], 
@@ -172,7 +172,7 @@ class CombatSystem:
         self._combat_log.append(message)
         print(message)
     
-    @verify_complexity("O(1)", "Constant time damage calculation with cache")
+    @verify_complexity(time="O(1)", description="Constant time damage calculation with cache")
     def calculate_physical_damage(self, attacker: Character, target: Character) -> int:
         """Calculate physical damage with variance.
         
@@ -204,7 +204,7 @@ class CombatSystem:
         self._damage_cache.put(cache_key, damage)
         return damage
     
-    @verify_complexity("O(1)", "Constant time magic damage calculation")
+    @verify_complexity(time="O(1)", description="Constant time magic damage calculation")
     def calculate_magic_damage(self, attacker: Character, target: Character, 
                                spell_power: int) -> int:
         """Calculate magic damage with spell power.
@@ -228,7 +228,7 @@ class CombatSystem:
         damage = max(1, int(base_damage + variance - target.stats.magic_defense))
         return damage
     
-    @verify_complexity("O(n)", "Checks n combatants for alive status")
+    @verify_complexity(time="O(n)", description="Checks n combatants for alive status")
     def check_combat_end(self, player_party: Tuple[Character, ...],
                         enemy_party: Tuple[Character, ...]) -> Tuple[bool, str]:
         """Check if combat has ended.
@@ -257,7 +257,7 @@ class CombatSystem:
         else:
             return False, "ongoing"
     
-    @verify_complexity("O(1)", "Constant time status display")
+    @verify_complexity(time="O(1)", description="Constant time status display")
     def display_combat_status(self, player_party: Tuple[Character, ...],
                              enemy_party: Tuple[Character, ...]) -> None:
         """Display current combat status.
@@ -282,7 +282,7 @@ class CombatSystem:
                 print(f"  {character.name} - FALLEN")
         print(f"{'-' * 60}")
     
-    @verify_complexity("O(n)", "Distributes EXP to n party members")
+    @verify_complexity(time="O(n)", description="Distributes EXP to n party members")
     def end_combat(self, result: str, player_party: Tuple[Character, ...],
                   enemy_party: Tuple[Character, ...]) -> CombatResult:
         """End combat and calculate rewards.
@@ -379,7 +379,7 @@ class CombatSystem:
             else:
                 print("Invalid choice. Try again.")
     
-    def select_target(self, targets: List[Character]) -> Optional[Character]:
+    def select_target(self, targets: PyList[Character]) -> Optional[Character]:
         """Let player select a target from list"""
         alive_targets = [t for t in targets if t.stats.is_alive()]
         if not alive_targets:
@@ -399,7 +399,7 @@ class CombatSystem:
             except ValueError:
                 print("Please enter a number.")
     
-    def select_ability(self, character: Character) -> Optional[Ability]:
+    def select_ability(self, character: Character) -> Optional[AbilityData]:
         """Let player select an ability"""
         available = character.get_available_abilities()
         if not available:
@@ -602,7 +602,7 @@ class CombatSystem:
         elif result == "fled":
             return {"result": "fled"}
     
-    def run_combat(self, player_party: List[Character], enemy_party: List[Character]) -> dict:
+    def run_combat(self, player_party: PyList[Character], enemy_party: PyList[Character]) -> dict:
         """Run complete combat encounter"""
         self.start_combat(player_party, enemy_party)
         

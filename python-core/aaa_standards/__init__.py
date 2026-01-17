@@ -66,11 +66,11 @@ from .formal_specs import (
     ComplexityClass,
     ComplexitySpec,
     benchmark,
-    profile,
 )
 from .performance import (
     LRUCache,
     memoize,
+    profile,
     PerformanceProfiler,
     CacheStats,
 )
