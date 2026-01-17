@@ -15,7 +15,7 @@ Complexity Guarantees:
 - Combat state checks: O(n) where n = combatants
 """
 
-from typing import Tuple, Optional, List as PyList
+from typing import Tuple, Optional, List as PyList, Dict, Any
 from enum import Enum
 from dataclasses import dataclass
 import random
@@ -602,7 +602,7 @@ class CombatSystem:
         elif result == "fled":
             return {"result": "fled"}
     
-    def run_combat(self, player_party: PyList[Character], enemy_party: PyList[Character]) -> dict:
+    def run_combat(self, player_party: PyList[Character], enemy_party: PyList[Character]) -> Dict[str, Any]:
         """Run complete combat encounter"""
         self.start_combat(player_party, enemy_party)
         

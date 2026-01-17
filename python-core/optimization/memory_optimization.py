@@ -96,7 +96,7 @@ class ObjectPool(Generic[T]):
         self._max_size = max_size
         
         # Bounded pool: O(max_size) memory
-        self._pool: deque[T] = deque(maxlen=max_size)
+        self._pool: Deque[T] = deque(maxlen=max_size)
         
         # Statistics
         self._stats = MemoryStats(max_pool_size=max_size)

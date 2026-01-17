@@ -17,7 +17,7 @@ Design Law Article IV Compliance:
 
 import time
 import sys
-from typing import Dict, List, Optional, Callable, Any
+from typing import Dict, List, Optional, Callable, Any, Deque
 from dataclasses import dataclass, field
 from collections import deque
 from functools import wraps
@@ -82,8 +82,8 @@ class PerformanceMonitor:
         self.target_frame_time = 1000.0 / target_fps  # milliseconds
         
         # Bounded memory: O(window_size)
-        self.frame_times: deque[float] = deque(maxlen=window_size)
-        self.frame_metrics: deque[FrameMetrics] = deque(maxlen=window_size)
+        self.frame_times: Deque[float] = deque(maxlen=window_size)
+        self.frame_metrics: Deque[FrameMetrics] = deque(maxlen=window_size)
         
         # Current frame tracking
         self.frame_number = 0
