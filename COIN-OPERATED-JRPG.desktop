@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=COIN:OPERATED
+Comment=A 16-bit Retro JRPG - Journey from Coin to Time Goddess
+Exec=/usr/bin/python3 /workspaces/COIN-OPERATED-JRPG/coin_operated.py
+Icon=/workspaces/COIN-OPERATED-JRPG/assets/icon.png
+Terminal=false
+Categories=Game;RolePlaying;
+Keywords=jrpg;rpg;game;retro;16bit;
+StartupNotify=true
+StartupWMClass=coin_operated

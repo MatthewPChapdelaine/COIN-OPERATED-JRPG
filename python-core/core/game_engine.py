@@ -31,6 +31,9 @@ class GameEngine:
         self.player = None
         self.party = []
         self.current_location = None
+        # Player position for graphics mode
+        self.player_x = 5
+        self.player_y = 5
         self.game_progress = {
             'act': 1,
             'completed_quests': [],
@@ -107,6 +110,8 @@ class GameEngine:
         print("7. Exit")
         
         choice = input("\nSelect option: ").strip()
+        # Extract just the number from input
+        choice = choice.split('.')[0].split()[0] if choice else ""
         
         if choice == "1":
             self.new_game()
@@ -165,6 +170,8 @@ class GameEngine:
         print("6. Return to Main Menu")
         
         choice = input("\nWhat will you do? ").strip()
+        # Extract just the number from input
+        choice = choice.split('.')[0].split()[0] if choice else ""
         
         if choice == "1":
             self.explore()
@@ -281,6 +288,22 @@ class GameEngine:
         print("\n[Game Over system - To be implemented]")
         input("\nPress Enter to return to main menu...")
         self.state = GameState.MAIN_MENU
+    
+    def handle_movement(self, direction: str):
+        """Handle player movement in the game world.
+        
+        Args:
+            direction: 'up', 'down', 'left', or 'right'
+        """
+        # Update player position
+        if direction == 'up':
+            self.player_y = max(0, self.player_y - 1)
+        elif direction == 'down':
+            self.player_y = min(19, self.player_y + 1)
+        elif direction == 'left':
+            self.player_x = max(0, self.player_x - 1)
+        elif direction == 'right':
+            self.player_x = min(19, self.player_x + 1)
     
     def shutdown(self):
         """Gracefully shut down the game"""

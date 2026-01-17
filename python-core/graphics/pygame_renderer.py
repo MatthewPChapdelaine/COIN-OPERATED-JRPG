@@ -141,35 +141,112 @@ class PygameRenderer(GameEventInterface):
         location = self.adapter.get_player_location()
         party = self.adapter.get_party_members()
         
+        # Draw a simple tile-based world
+        TILE_SIZE = 32
+        GRID_WIDTH = self.width // TILE_SIZE
+        GRID_HEIGHT = self.height // TILE_SIZE
+        
+        # Draw background tiles (grass pattern)
+        for y in range(GRID_HEIGHT):
+            for x in range(GRID_WIDTH):
+                tile_rect = pygame.Rect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE)
+                # Checkerboard pattern for grass
+                if (x + y) % 2 == 0:
+                    pygame.draw.rect(self.screen, (34, 139, 34), tile_rect)  # Forest green
+                else:
+                    pygame.draw.rect(self.screen, (46, 160, 46), tile_rect)  # Lighter green
+                pygame.draw.rect(self.screen, (20, 90, 20), tile_rect, 1)  # Grid lines
+        
+        # Draw player sprite at their position
+        if location and 'x' in location and 'y' in location and party and len(party) > 0:
+            player = party[0]
+            player_x = location['x'] * TILE_SIZE
+            player_y = location['y'] * TILE_SIZE
+            
+            # Player body (blue square with border)
+            player_rect = pygame.Rect(player_x + 2, player_y + 2, TILE_SIZE - 4, TILE_SIZE - 4)
+            pygame.draw.rect(self.screen, self.BLUE, player_rect)
+            pygame.draw.rect(self.screen, self.WHITE, player_rect, 2)
+            
+            # Add simple face (eyes)
+            pygame.draw.circle(self.screen, self.WHITE, 
+                             (player_x + 10, player_y + 12), 3)
+            pygame.draw.circle(self.screen, self.WHITE, 
+                             (player_x + 22, player_y + 12), 3)
+        
+        # Draw UI overlay with semi-transparent background
+        ui_overlay = pygame.Surface((self.width, 80))
+        ui_overlay.set_alpha(200)
+        ui_overlay.fill(self.BLACK)
+        self.screen.blit(ui_overlay, (0, 0))
+        
         # Render location name
         if location and 'name' in location:
             location_text = self.font_medium.render(
-                location['name'], True, self.WHITE
+                location['name'], True, self.YELLOW
             )
-            self.screen.blit(location_text, (20, 20))
+            self.screen.blit(location_text, (20, 15))
         
-        # Render player sprite (center of screen)
+        # Player stats bar
         if party and len(party) > 0:
             player = party[0]
-            player_rect = pygame.Rect(
-                self.width // 2 - 16,
-                self.height // 2 - 16,
-                32, 32
-            )
-            pygame.draw.rect(self.screen, self.BLUE, player_rect)
+            stats_y = 45
             
-            # Player name
             name_text = self.font_small.render(
-                player.get('name', 'Player'), True, self.WHITE
+                f"{player.get('name', 'Player')} Lv.{player.get('level', 1)}", True, self.WHITE
             )
-            self.screen.blit(name_text, (player_rect.x - 20, player_rect.y - 25))
+            self.screen.blit(name_text, (20, stats_y))
+            
+            # HP bar
+            max_hp = player.get('max_hp', 100)
+            current_hp = player.get('current_hp', max_hp)
+            hp_ratio = current_hp / max_hp if max_hp > 0 else 0
+            
+            hp_bar_width = 150
+            hp_bar_x = 200
+            # Background
+            pygame.draw.rect(self.screen, (50, 0, 0), 
+                           pygame.Rect(hp_bar_x, stats_y, hp_bar_width, 16))
+            # HP fill
+            pygame.draw.rect(self.screen, self.GREEN, 
+                           pygame.Rect(hp_bar_x, stats_y, int(hp_bar_width * hp_ratio), 16))
+            # Border
+            pygame.draw.rect(self.screen, self.WHITE, 
+                           pygame.Rect(hp_bar_x, stats_y, hp_bar_width, 16), 1)
+            
+            hp_text = self.font_small.render(f"HP {current_hp}/{max_hp}", True, self.WHITE)
+            self.screen.blit(hp_text, (hp_bar_x + 5, stats_y + 1))
+            
+            # MP bar
+            max_mp = player.get('max_mp', 50)
+            current_mp = player.get('current_mp', max_mp)
+            mp_ratio = current_mp / max_mp if max_mp > 0 else 0
+            
+            mp_bar_x = hp_bar_x + hp_bar_width + 20
+            # Background
+            pygame.draw.rect(self.screen, (0, 0, 50), 
+                           pygame.Rect(mp_bar_x, stats_y, hp_bar_width, 16))
+            # MP fill
+            pygame.draw.rect(self.screen, self.BLUE, 
+                           pygame.Rect(mp_bar_x, stats_y, int(hp_bar_width * mp_ratio), 16))
+            # Border
+            pygame.draw.rect(self.screen, self.WHITE, 
+                           pygame.Rect(mp_bar_x, stats_y, hp_bar_width, 16), 1)
+            
+            mp_text = self.font_small.render(f"MP {current_mp}/{max_mp}", True, self.WHITE)
+            self.screen.blit(mp_text, (mp_bar_x + 5, stats_y + 1))
         
-        # Render location description
-        if location and 'description' in location:
-            desc_text = self.font_small.render(
-                location['description'][:60], True, self.GRAY
-            )
-            self.screen.blit(desc_text, (20, self.height - 100))
+        # Controls help at bottom
+        help_overlay = pygame.Surface((self.width, 60))
+        help_overlay.set_alpha(200)
+        help_overlay.fill(self.BLACK)
+        self.screen.blit(help_overlay, (0, self.height - 60))
+        
+        controls_text = self.font_small.render(
+            \"Arrow Keys: Move | SPACE: Interact | I: Inventory | S: Save | ESC: Quit\",
+            True, self.GRAY
+        )
+        self.screen.blit(controls_text, (20, self.height - 40))
     
     def _render_combat(self, encounter: Dict[str, Any]):
         """Render combat screen.

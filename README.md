@@ -3,82 +3,101 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Game Status: Playable](https://img.shields.io/badge/status-playable-green.svg)]()
-[![Graphics: Retro16-Style](https://img.shields.io/badge/graphics-Retro16--style-ff69b4.svg)]()
-[![Platform: Cross-Platform](https://img.shields.io/badge/platform-Cross--Platform-lightgrey.svg)]()
-[![Steam: Ready](https://img.shields.io/badge/Steam-ready-blue.svg)]()
+[![Graphics: 16-bit Retro](https://img.shields.io/badge/graphics-16--bit--retro-ff69b4.svg)]()
+[![Platform: GUI Desktop](https://img.shields.io/badge/platform-GUI%20Desktop-lightgrey.svg)]()
+[![No Terminal Required](https://img.shields.io/badge/launch-GUI%20only-success.svg)]()
 
-**An authentic Retro16-style JRPG set in the Orbspace universe**
+**An authentic 16-bit JRPG set in the Orbspace universe - GUI Desktop Game**
 
-Follow Coin's journey from sentient magical artifact to Time Goddess in this turn-based RPG featuring deep storytelling, strategic combat, and meaningful player choices. Features **authentic 16-bit graphics** generated procedurally to recreate the golden age of classic JRPGs.
+Play as **Coin**, a sentient being created from mystical Domminnian coins, on your journey from magical artifact to Time Goddess. Features deep storytelling, strategic turn-based combat, and meaningful player choices in an authentic 16-bit retro style inspired by SNES classics like Final Fantasy VI and Chrono Trigger.
 
-## ✨ New Features
+## ✨ NEW: Exclusive GUI Experience
 
-- **🛠️ Diagnostic Tool**: Automated system health checks with `diagnose.py`
-- **📊 Performance Profiler**: Analyze rendering performance with `profile_graphics.py`
-- **🎨 Asset Generator**: Create placeholder graphics with `generate_assets.py`
-- **📦 Release Automation**: Build and package releases with `build_release.py`
-- **📖 Comprehensive Documentation**: Roadmap, troubleshooting, and architecture guides
-- **✅ Test Suite**: Complete unit and integration testing framework
+🎮 **No Terminal Required** - Launches as a proper desktop game  
+🪙 **Play as Coin** - Unique golden, mystical protagonist  
+🎨 **Character-Matched Graphics** - Visuals designed specifically for Coin's magical, coin-based form  
+🌌 **Spiritual Narrative** - Themes from Gnostic Christianity and Wicca  
+⚔️ **16-bit Combat** - Classic JRPG turn-based battles  
 
 ---
 
-## 🎮 Quick Start
+## 🎮 Quick Start (GUI Launch)
 
-### Linux Users (Recommended)
+## 🎮 One-Command Installation
 
+### No Technical Knowledge Required!
+
+**Linux:**
 ```bash
-# Clone the repository
 git clone https://github.com/MatthewPChapdelaine/COIN-OPERATED-JRPG.git
 cd COIN-OPERATED-JRPG
-
-# Run automated setup (installs dependencies)
-chmod +x setup_linux.sh
-./setup_linux.sh
-
-# Verify installation
-./verify.sh
-
-# Run the game (Retro16 mode by default)
-python3 launch_game.py
+bash setup.sh
 ```
 
-### Manual Setup (All Platforms)
-
+**Windows:**
 ```bash
-# Install dependencies
-pip3 install -r requirements.txt
-
-# Run the game (Retro16-style graphics) 🆕
-python3 launch_game.py
-
-# Or choose your mode:
-python3 launch_game.py --mode retro16    # 16-bit retro graphics (default)
-python3 launch_game.py --mode graphics  # Modern 2D graphics
-python3 launch_game.py --mode text      # Original text mode
+git clone https://github.com/MatthewPChapdelaine/COIN-OPERATED-JRPG.git
+cd COIN-OPERATED-JRPG
+setup.bat
 ```
+*(Or just double-click `setup.bat`)*
 
-### Test Procedural Graphics
-
+**Any Platform:**
 ```bash
-# Generate Retro16-style graphics samples ⭐
-python3 snes_demo.py
-
-# Generate game icons
-python3 generate_icon.py
-
-# Test graphics system
-python3 test_graphics.py
+python3 auto_setup.py
 ```
 
-### Build for Steam
+### What Happens Automatically
 
-```bash
-# Build Steam-ready package
-chmod +x build_steam.sh
-./build_steam.sh
+The installer will:
+- ✅ Check Python and pip
+- ✅ Install all dependencies (pygame, Pillow)
+- ✅ Create application menu shortcut
+- ✅ Optionally create desktop icon
+- ✅ Set up quick launch scripts
+- ✅ Offer to launch the game immediately
 
-# Output will be in steam_build/
-```
+**Takes 1-2 minutes. Zero configuration needed!**
+
+### After Installation
+
+Launch the game any way you prefer:
+- 🔍 Search for "COIN:OPERATED" in your applications menu
+- 🖱️ Double-click the desktop icon (if created)
+- 🎮 Run `./play.sh` (Linux/macOS) or `play.bat` (Windows)
+- 💻 Run `python3 coin_operated.py`
+
+**The game launches as a pure GUI application - no terminal window!**
+
+### What You'll See
+
+1. **Splash Screen**: Golden Coin logo with magical glow
+2. **Game World**: 16-bit tile-based exploration
+3. **Coin Character**: Golden, mystical sprite with purple eyes and magical aura
+4. **UI**: Gold and purple themed (matching Coin's divine nature)
+5. **Controls displayed on-screen** - no manual needed!
+
+---
+
+## 🎨 Graphics & Aesthetic
+
+This game's graphics are specifically designed to match the character and setting:
+
+**Coin's Design**:
+- Golden circular form (like an enchanted coin)
+- Mystical purple eyes
+- Glowing magical aura
+- Small head coin floating above
+- Transforms through the story (Maiden → Mother → Crone / Time Goddess)
+
+**World Aesthetic**:
+- Dark mystical stone tiles
+- Magical sparkles and effects
+- 16-bit SNES-era style (256x224 scaled 3x)
+- Purple and gold UI theme
+- Authentic retro JRPG look
+
+**Inspired by**: Final Fantasy VI, Chrono Trigger, Secret of Mana
 
 ---
 

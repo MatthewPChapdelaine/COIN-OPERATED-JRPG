@@ -42,19 +42,18 @@ class GraphicsAdapter(GameStateInterface, GameCommandInterface):
     
     def get_player_location(self) -> Dict[str, Any]:
         """Get current player location data."""
-        if not self.engine.current_location:
-            return {
-                'name': 'Unknown',
-                'description': 'Starting area',
-                'nearby_npcs': []
-            }
+        # Get player coordinates
+        x = getattr(self.engine, 'player_x', 5)
+        y = getattr(self.engine, 'player_y', 5)
+        
+        location_name = self.engine.current_location if self.engine.current_location else 'Acadmium City'
         
         return {
-            'name': getattr(self.engine.current_location, 'name', 'Location'),
-            'description': getattr(self.engine.current_location, 'description', ''),
-            'nearby_npcs': getattr(self.engine.current_location, 'npcs', []),
-            'x': getattr(self.engine.current_location, 'x', 0),
-            'y': getattr(self.engine.current_location, 'y', 0)
+            'name': location_name if isinstance(location_name, str) else getattr(location_name, 'name', 'Unknown'),
+            'description': 'Explore the city and seek adventures',
+            'nearby_npcs': [],
+            'x': x,
+            'y': y
         }
     
     def get_party_members(self) -> List[Dict[str, Any]]:
