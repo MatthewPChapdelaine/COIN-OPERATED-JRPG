@@ -126,7 +126,7 @@ class Character:
         """Character abilities. Complexity: O(1)"""
         return self._data.abilities
     
-    @verify_complexity("O(1)", "Ability lookup via LRU cache")
+    @verify_complexity(time="O(1)", description="Ability lookup via LRU cache")
     def get_ability(self, name: str) -> Result[AbilityData, str]:
         """Get ability by name with O(1) cache lookup.
         
@@ -153,7 +153,7 @@ class Character:
         
         return Err(f"Ability not found: {name}")
     
-    @verify_complexity("O(n)", "Filters n abilities")
+    @verify_complexity(time="O(n)", description="Filters n abilities")
     def get_available_abilities(self) -> Tuple[AbilityData, ...]:
         """Get list of usable abilities.
         
@@ -168,7 +168,7 @@ class Character:
             if a.unlocked and self._data.stats.current_mp >= a.mp_cost
         )
     
-    @verify_complexity("O(1)", "Creates new immutable character data")
+    @verify_complexity(time="O(1)", description="Creates new immutable character data")
     @requires(lambda self, amount: amount > 0, "Heal amount must be positive")
     @ensures(lambda self, result: result.is_success() or self._data.stats.current_hp == self._data.stats.max_hp,
              "Healing succeeds or HP already at max")
@@ -230,7 +230,7 @@ class Character:
         self._data = new_data
         return Ok(new_data)
     
-    @verify_complexity("O(1)", "MP restoration is constant time")
+    @verify_complexity(time="O(1)", description="MP restoration is constant time")
     @requires(lambda self, amount: amount > 0, "Restore amount must be positive")
     def restore_mp(self, amount: int) -> Result[CharacterData, str]:
         """Restore character MP.
@@ -269,7 +269,7 @@ class Character:
         self._data = new_data
         return Ok(new_data)
     
-    @verify_complexity("O(1)", "Damage calculation is constant time")
+    @verify_complexity(time="O(1)", description="Damage calculation is constant time")
     @requires(lambda self, amount: amount >= 0, "Damage must be non-negative")
     @ensures(lambda self, result: result.is_success(), "Damage always succeeds")
     def take_damage(self, amount: int) -> Result[Tuple[CharacterData, int], str]:
@@ -316,7 +316,7 @@ class Character:
         self._data = new_data
         return Ok((new_data, damage))
     
-    @verify_complexity("O(1)", "Alive check is constant")
+    @verify_complexity(time="O(1)", description="Alive check is constant")
     def is_alive(self) -> bool:
         """Check if character is alive.
         
@@ -327,7 +327,7 @@ class Character:
         """
         return self._data.stats.current_hp > 0
     
-    @verify_complexity("O(1)", "Level up calculations are constant")
+    @verify_complexity(time="O(1)", description="Level up calculations are constant")
     @memoize
     def calculate_level_stats(self, level: int) -> CharacterStats:
         """Calculate stats for a given level.
@@ -355,7 +355,7 @@ class Character:
             luck=10
         )
     
-    @verify_complexity("O(1)", "Level up is constant time")
+    @verify_complexity(time="O(1)", description="Level up is constant time")
     def level_up(self) -> Result[CharacterData, str]:
         """Level up character.
         
@@ -392,7 +392,7 @@ class Character:
         print(f"\n✨ {self._data.name} reached level {new_level}!")
         return Ok(new_data)
     
-    @verify_complexity("O(1)", "EXP gain with level check")
+    @verify_complexity(time="O(1)", description="EXP gain with level check")
     def gain_exp(self, amount: int) -> Result[Tuple[CharacterData, bool], str]:
         """Gain experience points.
         
@@ -423,7 +423,7 @@ class Character:
         
         return Ok((new_data, False))
     
-    @verify_complexity("O(1)", "Ability unlock is constant via cache")
+    @verify_complexity(time="O(1)", description="Ability unlock is constant via cache")
     def unlock_ability(self, ability_name: str) -> Result[CharacterData, str]:
         """Unlock an ability by name.
         
@@ -471,7 +471,7 @@ class Character:
                 return i
         return -1
     
-    @verify_complexity("O(1)", "Status display is constant for fixed abilities")
+    @verify_complexity(time="O(1)", description="Status display is constant for fixed abilities")
     def display_status(self):
         """Display character status.
         
@@ -500,7 +500,7 @@ class Character:
 
 # Factory functions for creating specific characters with AAA standards
 
-@verify_complexity("O(1)", "Character creation is constant time")
+@verify_complexity(time="O(1)", description="Character creation is constant time")
 def create_coin(age_state: str = "young", level: int = 1) -> Character:
     """Create Coin character with type-safe data.
     
@@ -587,7 +587,7 @@ def create_coin(age_state: str = "young", level: int = 1) -> Character:
     return Character(data)
 
 
-@verify_complexity("O(1)", "Character creation is constant time")
+@verify_complexity(time="O(1)", description="Character creation is constant time")
 def create_jinn_lir(level: int = 15) -> Character:
     """Create Jinn-Lir character with type-safe data.
     
@@ -651,7 +651,7 @@ def create_jinn_lir(level: int = 15) -> Character:
     return Character(data)
 
 
-@verify_complexity("O(1)", "Character creation is constant time")
+@verify_complexity(time="O(1)", description="Character creation is constant time")
 def create_orbius(level: int = 50) -> Character:
     """Create Orbius character.
     
@@ -709,7 +709,7 @@ def create_orbius(level: int = 50) -> Character:
     return Character(data)
 
 
-@verify_complexity("O(1)", "Character creation is constant time")
+@verify_complexity(time="O(1)", description="Character creation is constant time")
 def create_typhus(level: int = 1) -> Character:
     """Create Typhus character.
     
@@ -767,7 +767,7 @@ def create_typhus(level: int = 1) -> Character:
     return Character(data)
 
 
-@verify_complexity("O(1)", "Character creation is constant time")
+@verify_complexity(time="O(1)", description="Character creation is constant time")
 def create_coireena(level: int = 10) -> Character:
     """Create Coireena character.
     

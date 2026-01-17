@@ -92,7 +92,7 @@ class SaveSystem:
         # Create save directory if it doesn't exist
         self._save_directory.mkdir(parents=True, exist_ok=True)
     
-    @verify_complexity("O(n)", "Serializes n bytes of game state")
+    @verify_complexity(time="O(n)", description="Serializes n bytes of game state")
     @requires(lambda self, slot: 1 <= slot <= self._max_save_slots,
               "Slot must be in valid range")
     def save_game(self, slot: int, game_state: Dict) -> Result[SaveMetadata, str]:
@@ -155,7 +155,7 @@ class SaveSystem:
         except Exception as e:
             return Err(f"Unexpected error during save: {e}")
     
-    @verify_complexity("O(n)", "Parses n bytes from save file")
+    @verify_complexity(time="O(n)", description="Parses n bytes from save file")
     @requires(lambda self, slot: 1 <= slot <= self._max_save_slots,
               "Slot must be in valid range")
     def load_game(self, slot: int) -> Result[Dict, str]:
@@ -204,7 +204,7 @@ class SaveSystem:
         except Exception as e:
             return Err(f"Unexpected error during load: {e}")
     
-    @verify_complexity("O(1)", "File deletion is constant time")
+    @verify_complexity(time="O(1)", description="File deletion is constant time")
     def delete_save(self, slot: int) -> Result[None, str]:
         """Delete a save file.
         
@@ -234,7 +234,7 @@ class SaveSystem:
         except OSError as e:
             return Err(f"Failed to delete save: {e}")
     
-    @verify_complexity("O(s)", "Lists s save slots")
+    @verify_complexity(time="O(n)", description="Lists n save slots")
     def list_saves(self) -> Result[Tuple[SaveMetadata, ...], str]:
         """List all available save files with metadata.
         
@@ -280,7 +280,7 @@ class SaveSystem:
         
         return Ok(tuple(saves))
     
-    @verify_complexity("O(s)", "Displays s saves")
+    @verify_complexity(time="O(n)", description="Displays s saves")
     def display_saves(self) -> None:
         """Display all save files.
         
@@ -313,7 +313,7 @@ class SaveSystem:
                 print(f"  Act {metadata.act} | Level {metadata.player_level} | {metadata.location}")
                 print(f"  Saved: {time_str}")
     
-    @verify_complexity("O(n)", "Auto-save serializes game state")
+    @verify_complexity(time="O(n)", description="Auto-save serializes game state")
     def auto_save(self, game_state: Dict) -> Result[None, str]:
         """Perform auto-save.
         
@@ -347,7 +347,7 @@ class SaveSystem:
         except Exception as e:
             return Err(f"Auto-save failed: {e}")
     
-    @verify_complexity("O(n)", "Loads and parses auto-save")
+    @verify_complexity(time="O(n)", description="Loads and parses auto-save")
     def load_autosave(self) -> Result[Dict, str]:
         """Load auto-save.
         

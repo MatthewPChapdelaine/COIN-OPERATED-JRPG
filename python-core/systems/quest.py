@@ -90,7 +90,7 @@ class QuestManager:
         self._failed_quest_ids: FrozenSet[str] = frozenset()
         self._quest_cache: LRUCache[str, QuestData] = LRUCache(capacity=100)
     
-    @verify_complexity("O(1)", "Hash table insert with cache update")
+    @verify_complexity(time="O(1)", description="Hash table insert with cache update")
     def register_quest(self, quest: QuestData) -> Result[None, str]:
         """Register a quest in the system.
         
@@ -111,7 +111,7 @@ class QuestManager:
         self._quest_cache.put(quest.id, quest)
         return Ok(None)
     
-    @verify_complexity("O(1)", "Cache lookup with hash table fallback")
+    @verify_complexity(time="O(1)", description="Cache lookup with hash table fallback")
     def get_quest(self, quest_id: str) -> Result[QuestData, str]:
         """Get quest by ID with O(1) cache lookup.
         
@@ -137,7 +137,7 @@ class QuestManager:
         
         return Err(f"Quest {quest_id} not found")
     
-    @verify_complexity("O(1)", "Set operations for quest state tracking")
+    @verify_complexity(time="O(1)", description="Set operations for quest state tracking")
     @requires(lambda self, quest_id: quest_id in self._all_quests,
               "Quest must exist before starting")
     def start_quest(self, quest_id: str) -> Result[QuestData, str]:
@@ -190,7 +190,7 @@ class QuestManager:
         
         return Ok(updated_quest)
     
-    @verify_complexity("O(m)", "Updates m objectives in quest")
+    @verify_complexity(time="O(n)", description="Updates n objectives in quest")
     def update_quest_objective(self, quest_id: str, objective_index: int,
                                progress: int) -> Result[QuestData, str]:
         """Update a specific quest objective.
@@ -261,7 +261,7 @@ class QuestManager:
         
         return Ok(updated_quest)
     
-    @verify_complexity("O(n)", "Filters n quests by requirements")
+    @verify_complexity(time="O(n)", description="Filters n quests by requirements")
     def get_available_quests(self, player_level: int,
                            faction_rep: Dict[str, int]) -> Tuple[QuestData, ...]:
         """Get quests available to player.
@@ -283,7 +283,7 @@ class QuestManager:
                 available.append(quest)
         return tuple(available)
     
-    @verify_complexity("O(1)", "Set lookup")
+    @verify_complexity(time="O(1)", description="Set lookup")
     def get_active_quests(self) -> Tuple[QuestData, ...]:
         """Get all active quests.
         
@@ -297,7 +297,7 @@ class QuestManager:
             if qid in self._all_quests
         )
     
-    @verify_complexity("O(1)", "Set lookup")
+    @verify_complexity(time="O(1)", description="Set lookup")
     def get_completed_quests(self) -> Tuple[QuestData, ...]:
         """Get all completed quests.
         
@@ -311,7 +311,7 @@ class QuestManager:
             if qid in self._all_quests
         )
     
-    @verify_complexity("O(k)", "Displays k active quests")
+    @verify_complexity(time="O(n)", description="Displays n active quests")
     def display_active_quests(self) -> None:
         """Display all active quests.
         

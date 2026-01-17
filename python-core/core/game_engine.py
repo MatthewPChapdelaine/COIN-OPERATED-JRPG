@@ -88,7 +88,7 @@ class GameEngine:
         self._quest_cache: LRUCache[str, QuestData] = LRUCache(capacity=50)
         self._location_cache: LRUCache[str, Location] = LRUCache(capacity=20)
     
-    @verify_complexity("O(1)", "Game initialization is constant time")
+    @verify_complexity(time="O(1)", description="Game initialization is constant time")
     def initialize(self) -> Result[GameEngineData, str]:
         """Initialize game engine and load necessary data.
         
@@ -113,9 +113,8 @@ class GameEngine:
         print("=" * 60)
         print("\nInitializing game engine...")
         
-        # Verify state machine is valid
-        if not self._data.state_machine.verify_reachability():
-            return Err("State machine verification failed: not all states reachable")
+        # State machine is already verified during construction
+        # (see FormalStateMachine._verify_fsm_properties)
         
         # Create initialized state
         self._data = GameEngineData(
@@ -131,7 +130,7 @@ class GameEngine:
         print("✓ Game engine initialized successfully")
         return Ok(self._data)
     
-    @verify_complexity("O(1)", "Main game loop with constant time state dispatch")
+    @verify_complexity(time="O(1)", description="Main game loop with constant time state dispatch")
     def run(self) -> Result[None, str]:
         """Main game loop.
         
@@ -199,7 +198,7 @@ class GameEngine:
         current_dict.update(kwargs)
         return GameEngineData(**current_dict)
     
-    @verify_complexity("O(1)", "State transition verification is constant")
+    @verify_complexity(time="O(1)", description="State transition verification is constant")
     def _transition_state(self, transition: StateTransition) -> Result[FormalStateMachine, str]:
         """Attempt state transition with formal verification.
         
@@ -215,7 +214,7 @@ class GameEngine:
         """
         return self._data.state_machine.transition(transition)
     
-    @verify_complexity("O(1)", "Menu display and input is constant")
+    @verify_complexity(time="O(1)", description="Menu display and input is constant")
     def _main_menu(self) -> Result[None, str]:
         """Display main menu and handle selection.
         
@@ -268,7 +267,7 @@ class GameEngine:
         self._data = self._update_data(state_machine=new_sm)
         return Ok(None)
     
-    @verify_complexity("O(1)", "New game initialization is constant")
+    @verify_complexity(time="O(1)", description="New game initialization is constant")
     def _new_game(self) -> Result[None, str]:
         """Start a new game.
         
@@ -299,7 +298,7 @@ class GameEngine:
         transition_result = self._transition_state(StateTransition.START_GAME)
         return transition_result.and_then(lambda sm: self._update_state_machine(sm))
     
-    @verify_complexity("O(1)", "New Game+ initialization is constant")
+    @verify_complexity(time="O(1)", description="New Game+ initialization is constant")
     def _new_game_plus(self) -> Result[None, str]:
         """Start New Game+ with retained progress.
         
@@ -330,7 +329,7 @@ class GameEngine:
         transition_result = self._transition_state(StateTransition.START_GAME)
         return transition_result.and_then(lambda sm: self._update_state_machine(sm))
     
-    @verify_complexity("O(1)", "Continue is constant time")
+    @verify_complexity(time="O(1)", description="Continue is constant time")
     def _continue_game(self) -> Result[None, str]:
         """Continue from last auto-save.
         
@@ -345,7 +344,7 @@ class GameEngine:
         transition_result = self._transition_state(StateTransition.START_GAME)
         return transition_result.and_then(lambda sm: self._update_state_machine(sm))
     
-    @verify_complexity("O(1)", "Game loop menu is constant time")
+    @verify_complexity(time="O(1)", description="Game loop menu is constant time")
     def _game_loop(self) -> Result[None, str]:
         """Main in-game loop.
         
@@ -387,7 +386,7 @@ class GameEngine:
             print("Invalid choice.")
             return Ok(None)
     
-    @verify_complexity("O(1)", "Combat loop placeholder is constant")
+    @verify_complexity(time="O(1)", description="Combat loop placeholder is constant")
     def _combat_loop(self) -> Result[None, str]:
         """Combat state loop.
         
@@ -404,7 +403,7 @@ class GameEngine:
         transition_result = self._transition_state(StateTransition.END_COMBAT)
         return transition_result.and_then(lambda sm: self._update_state_machine(sm))
     
-    @verify_complexity("O(1)", "Dialogue loop placeholder is constant")
+    @verify_complexity(time="O(1)", description="Dialogue loop placeholder is constant")
     def _dialogue_loop(self) -> Result[None, str]:
         """Dialogue state loop.
         
@@ -420,7 +419,7 @@ class GameEngine:
         transition_result = self._transition_state(StateTransition.END_DIALOGUE)
         return transition_result.and_then(lambda sm: self._update_state_machine(sm))
     
-    @verify_complexity("O(1)", "Inventory menu is constant time")
+    @verify_complexity(time="O(1)", description="Inventory menu is constant time")
     def _inventory_loop(self) -> Result[None, str]:
         """Inventory management loop.
         
@@ -439,7 +438,7 @@ class GameEngine:
         transition_result = self._transition_state(StateTransition.CLOSE_INVENTORY)
         return transition_result.and_then(lambda sm: self._update_state_machine(sm))
     
-    @verify_complexity("O(1)", "Save/Load menu is constant")
+    @verify_complexity(time="O(1)", description="Save/Load menu is constant")
     def _save_load_loop(self) -> Result[None, str]:
         """Save/Load menu loop.
         
@@ -455,7 +454,7 @@ class GameEngine:
         transition_result = self._transition_state(StateTransition.TO_MAIN_MENU)
         return transition_result.and_then(lambda sm: self._update_state_machine(sm))
     
-    @verify_complexity("O(1)", "Exploration placeholder is constant")
+    @verify_complexity(time="O(1)", description="Exploration placeholder is constant")
     def _explore(self) -> Result[None, str]:
         """Exploration menu.
         
@@ -470,7 +469,7 @@ class GameEngine:
         input("\nPress Enter to continue...")
         return Ok(None)
     
-    @verify_complexity("O(1)", "Party menu is constant time")
+    @verify_complexity(time="O(1)", description="Party menu is constant time")
     def _party_menu(self) -> Result[None, str]:
         """Party management menu.
         
@@ -487,7 +486,7 @@ class GameEngine:
         input("\nPress Enter to return...")
         return Ok(None)
     
-    @verify_complexity("O(n)", "Quest log displays n quests")
+    @verify_complexity(time="O(n)", description="Quest log displays n quests")
     def _quest_log(self) -> Result[None, str]:
         """Display active and completed quests.
         
@@ -520,7 +519,7 @@ class GameEngine:
         input("\nPress Enter to return...")
         return Ok(None)
     
-    @verify_complexity("O(1)", "Save game menu is constant")
+    @verify_complexity(time="O(1)", description="Save game menu is constant")
     def _save_game(self) -> Result[None, str]:
         """Save current game state.
         
@@ -536,7 +535,7 @@ class GameEngine:
         input("\nPress Enter to continue...")
         return Ok(None)
     
-    @verify_complexity("O(1)", "Options menu is constant")
+    @verify_complexity(time="O(1)", description="Options menu is constant")
     def _show_options(self) -> Result[None, str]:
         """Display options menu.
         
@@ -553,7 +552,7 @@ class GameEngine:
         input("\nPress Enter to return...")
         return Ok(None)
     
-    @verify_complexity("O(1)", "Credits display is constant")
+    @verify_complexity(time="O(1)", description="Credits display is constant")
     def _show_credits(self) -> Result[None, str]:
         """Display game credits.
         
@@ -578,7 +577,7 @@ class GameEngine:
         transition_result = self._transition_state(StateTransition.TO_MAIN_MENU)
         return transition_result.and_then(lambda sm: self._update_state_machine(sm))
     
-    @verify_complexity("O(1)", "Game over is constant")
+    @verify_complexity(time="O(1)", description="Game over is constant")
     def _game_over(self) -> Result[None, str]:
         """Handle game over state.
         
@@ -597,7 +596,7 @@ class GameEngine:
         transition_result = self._transition_state(StateTransition.TO_MAIN_MENU)
         return transition_result.and_then(lambda sm: self._update_state_machine(sm))
     
-    @verify_complexity("O(1)", "Movement is constant time position update")
+    @verify_complexity(time="O(1)", description="Movement is constant time position update")
     @requires(lambda self, direction: direction in ['up', 'down', 'left', 'right'], 
               "Direction must be valid")
     @ensures(lambda self, result: result.is_success(), 
@@ -642,7 +641,7 @@ class GameEngine:
         self._data = self._update_data(player_position=new_pos)
         return Ok(new_pos)
     
-    @verify_complexity("O(1)", "Shutdown is constant")
+    @verify_complexity(time="O(1)", description="Shutdown is constant")
     def _shutdown(self) -> Result[None, str]:
         """Gracefully shut down the game.
         

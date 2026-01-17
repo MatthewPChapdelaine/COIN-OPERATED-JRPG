@@ -28,7 +28,7 @@ from aaa_standards.formal_specs import verify_complexity
 
 # Core Systems
 from core.game_engine import GameEngine, GameState
-from core.character import Coin, JinnLir, Orbius, Typhus, Coireena
+from core.character import create_coin, create_jinn_lir, create_orbius, create_typhus, create_coireena
 from systems.combat import CombatSystem
 from systems.progression import ProgressionSystem, Inventory, Equipment, EquipmentSlot, EquipmentRarity, Item
 from systems.quest import QuestManager
@@ -98,7 +98,7 @@ class CoinOperatedJRPG(GameEngine):
         self.locations_visited: List[str] = []
         self.playtime: int = 0
     
-    @verify_complexity("O(1)", "Initializes fixed number of systems")
+    @verify_complexity(time="O(1)", description="Initializes fixed number of systems")
     def initialize(self) -> Result[None, str]:
         """Initialize game with all systems.
         
@@ -133,7 +133,7 @@ class CoinOperatedJRPG(GameEngine):
         except Exception as e:
             return Err(f"Initialization exception: {e}")
     
-    @verify_complexity("O(1)", "Creates fixed starter items")
+    @verify_complexity(time="O(1)", description="Creates fixed starter items")
     def _initialize_starter_items(self) -> Result[None, str]:
         """Initialize starter items and equipment.
         
@@ -168,7 +168,7 @@ class CoinOperatedJRPG(GameEngine):
         except Exception as e:
             return Err(f"Exception creating starter items: {e}")
     
-    @verify_complexity("O(1)", "Creates fixed party members")
+    @verify_complexity(time="O(1)", description="Creates fixed party members")
     def new_game(self) -> Result[None, str]:
         """Start a new game with type-safe initialization.
         
@@ -188,16 +188,16 @@ class CoinOperatedJRPG(GameEngine):
         
         try:
             # Create Coin (protagonist)
-            self.coin = Coin(age_state="young")
+            self.coin = create_coin(age_state="young")
             self.player = self.coin
             self.active_party = [self.coin]
             
             # Create other party members (not yet recruited)
             self.party_members = {
-                'jinn_lir': JinnLir(),
-                'orbius': Orbius(),
-                'typhus': Typhus(),
-                'coireena': Coireena()
+                'jinn_lir': create_jinn_lir(),
+                'orbius': create_orbius(),
+                'typhus': create_typhus(),
+                'coireena': create_coireena()
             }
             
             # Set starting location
