@@ -91,7 +91,7 @@ class CombatSystem:
         self._combat_data: Optional[CombatData] = None
         self._combat_active: bool = False
         self._escaped: bool = False
-        self._combat_log: PyPyList[str] = []
+        self._combat_log: PyList[str] = []
         self._damage_cache: LRUCache[Tuple[str, str], int] = LRUCache(capacity=50)
     
     @verify_complexity(time="O(n log n)", description="Sorting turn order by speed")

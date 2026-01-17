@@ -234,7 +234,7 @@ class SaveSystem:
         except OSError as e:
             return Err(f"Failed to delete save: {e}")
     
-    @verify_complexity(time="O(n)", description="Lists s save slots")
+    @verify_complexity(time="O(n)", description="Lists n save slots")
     def list_saves(self) -> Result[Tuple[SaveMetadata, ...], str]:
         """List all available save files with metadata.
         

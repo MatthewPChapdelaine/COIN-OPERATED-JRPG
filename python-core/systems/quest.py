@@ -311,7 +311,7 @@ class QuestManager:
             if qid in self._all_quests
         )
     
-    @verify_complexity(time="O(n)", description="Displays k active quests")
+    @verify_complexity(time="O(n)", description="Displays n active quests")
     def display_active_quests(self) -> None:
         """Display all active quests.
         
